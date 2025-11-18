@@ -6,7 +6,7 @@ Login to the MySQL server.
 mysql -u <user> -p<password> -h <FQDN/IP>
 ```
 
-Énumération de MySQL
+MySQL enumeration
 
 ```sh
 nmap --script=mysql-enum <FQDN/IP>
@@ -16,9 +16,9 @@ nmap --script=mysql-enum <FQDN/IP>
 use auxiliary/admin/mysql/mysql_sql
 ```
 
-Exploiter MySQL
+Exploit MySQL
 
-Extraire des hachages de mots de passe 
+Extract password hashes
 
 ```sh
 use auxiliary/scanner/mysql/mysql_schemadump
@@ -27,4 +27,3 @@ use auxiliary/scanner/mysql/mysql_schemadump
 ```sh
 use auxiliary/scanner/mysql/mysql_hashdump
 ```
-

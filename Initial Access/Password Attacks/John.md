@@ -6,19 +6,19 @@ Basic Syntax
 john --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.txt
 ```
 
-Lister tous les formats
+List all formats
 
 ```sh
 john --list=formats
 ```
 
-Identifier les hachages:
+Identify hashes:
 - https://hashes.com/en/tools/hash_identifier
 - `hashid HASH`
 - `hash-identifier HASH`
 
-**Single Crack Mode** (Mode de fissure unique)
-Le contenu du `hash.txt` doit etre de la forme suivante: `USER:HASH`
+**Single Crack Mode**
+The content of `hash.txt` must be in the following format: `USER:HASH`
 
 ```sh
 john --single --format=[format] hash.txt
@@ -27,15 +27,15 @@ john --single --format=[format] hash.txt
 ## Custom Rules
 
 https://www.openwall.com/john/doc/RULES.shtml
-Pour cette  attaques, on supposent que l'attaquant connaît la politique de mot de passe.
+For these attacks, we assume the attacker knows the password policy.
 
-Pour voir toutes les règles disponibles:
+To see all available rules:
 
 ```sh
 cat /etc/john/john.conf|grep "List.Rules:" | cut -d"." -f3 | cut -d":" -f2 | cut -d"]" -f1 | awk NF
 ```
 
-Modifier le fichier `/etc/john/john.conf` et ajouter a la fin:
+Modify the `/etc/john/john.conf` file and add at the end:
 
 ```sh
 [List.Rules:RULE_NAME]
@@ -43,27 +43,27 @@ Az"[0-9][0-9]" ^[!@]
 cAz"[0-9] [!£$%@]"
 ```
 
-Ont utilise ensuite une correspondance de modèle de style regex pour définir où le mot sera modifié
+We then use regex-style pattern matching to define where the word will be modified
 
-- `Az` Prend le mot et l'ajoute aux caractères que vous définissez
-- `A0` Prend le mot et le ajoute aux caractères que vous définissez  
-- `c` Met en majuscule le personnage en position
+- `Az` Takes the word and appends the characters you define
+- `A0` Takes the word and appends the characters you define  
+- `c` Capitalizes the character at position
 
-Enfin, nous devons ensuite définir quels caractères doivent être ajoutés, préfixés ou autrement inclus. Ceux-ci suivent directement les modèles de modificateurs à l’intérieur des guillemets doubles `" "`
+Finally, we must then define which characters should be added, prefixed, or otherwise included. These directly follow the modifier patterns inside double quotes `" "`
 
-- `[0-9]` Comprendra les numéros 0 à 9  
-- `[0]` Incluera uniquement le chiffre 0  
-- `[A-z]` Comprendra à la fois les majuscules et les minuscules  
-- `[A-Z]` N'inclura que des lettres majuscules  
-- `[a-z]` N'inclura que des lettres minuscules  
-- `[a]` Comprendra seulement un  
-- `[!£$%@]` Inclura les symboles `!£$%@`
+- `[0-9]` Will include numbers 0 to 9  
+- `[0]` Will only include the digit 0  
+- `[A-z]` Will include both uppercase and lowercase  
+- `[A-Z]` Will only include uppercase letters  
+- `[a-z]` Will only include lowercase letters  
+- `[a]` Will only include a  
+- `[!£$%@]` Will include the symbols `!£$%@`
 
-Utilisation de règles personnalisées
+Using custom rules
 
 ```sh
 john --rules=RULE_NAME --wordlist=wordlist.lst hash.txt
 #--stdout
 ```
 
-Pour plus d'information sur les rules : https://www.openwall.com/john/doc/RULES.shtml
+For more information on rules: https://www.openwall.com/john/doc/RULES.shtml

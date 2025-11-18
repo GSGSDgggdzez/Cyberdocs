@@ -1,6 +1,6 @@
 # NFS 
 
-Network File System écoute par défaut sur le port `2049` fonctionne avec [PortMapper (rpcbind)](./PortMapper%20(rpcbind).md)
+Network File System listens by default on port `2049` works with [PortMapper (rpcbind)](./PortMapper%20(rpcbind).md)
 
 
 ```sh
@@ -14,7 +14,7 @@ Show available NFS shares.
 showmount -e <FQDN/IP>
 ```
 
-## Utilisation
+## Usage
 
 Mount the specific NFS share.umount ./target-NFS
 

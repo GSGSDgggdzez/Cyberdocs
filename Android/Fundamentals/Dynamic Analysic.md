@@ -1,12 +1,12 @@
-# Dynamic Analysic
+# Dynamic Analysis
 
-Installer une application
+Install an application
 
 ```sh
 adb install apkfile.apk
 ```
 
-Intercepter le trafic de l'application avec Burp Suite et installer une autorité de certification approuvée au niveau du système d'exploitation Android
+Intercept application traffic with Burp Suite and install a trusted certificate authority at the Android OS level
 
 ```sh
 openssl x509 -inform PEM -subject_hash -in BurpCA.pem | head -1
@@ -21,21 +21,21 @@ adb shell "reboot"
 
 - **PID Cat**
 
-Outil pour afficher les entrées de journal pour un package d'application spécifique lorsque `debug=true` est activé dans l'application.
+Tool to display log entries for a specific application package when `debug=true` is enabled in the application.
 
 ## Drozer
 
-C'est un cadre complet d’audit de sécurité et d’attaque pour Android.
-La condition préalable est que vous ayez installé Drozer sur votre ordinateur et l'agent Drozer sur votre émulateur ou vos appareils.
+It is a complete security audit and attack framework for Android.
+The prerequisite is that you have Drozer installed on your computer and the Drozer agent on your emulator or devices.
 
-Connecter
+Connect
 
 ```sh
 adb forward tcp:31415 tcp:31415
 drozer console connect
 ```
 
-Récupération des informations sur le package
+Get package information
 
 ```sh
 run app.package.list
@@ -43,23 +43,22 @@ run app.package.list
 run app.package.info -a
 ```
 
-Identifier la surface d'attaque, activités non protégées et plus encore
+Identify the attack surface, unprotected activities and more
 
 ```sh
 run app.package.attacksurface package_name 
 ```
 
-Voir quelles activités peuvent être exploitées.
+See which activities can be exploited.
 
 ```sh
 run app.activity.info -f package_name
 ```
 
-commencer  des activités sans protection  ! 
+Start unprotected activities!
 
 ```sh
 run app.activity.start --component package name component_name
 ```
-
 
 

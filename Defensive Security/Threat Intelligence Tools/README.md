@@ -1,3 +1,3 @@
 # Threat Intelligence Tools
 
-**La Threat Intelligence** est l'analyse de données et d'informations à l'aide d'outils et de techniques pour générer des modèles significatifs sur la manière d'atténuer les risques potentiels associés aux menaces existantes ou émergentes ciblant les organisations, les industries, les secteurs ou les gouvernements.
+**Threat Intelligence** is the analysis of data and information using tools and techniques to generate meaningful patterns on how to mitigate potential risks associated with existing or emerging threats targeting organizations, industries, sectors or governments.

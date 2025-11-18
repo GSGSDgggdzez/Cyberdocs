@@ -1,6 +1,6 @@
 # MongoDB
 
-Le service tourne sur la machine sur le port 27117, 27017
+The service runs on the machine on port 27117, 27017
 
 Connecting to MongoDB : Interact with a MongoDB database
 
@@ -132,7 +132,7 @@ academy> db.apples.remove({price: {$lt: 0.8}})
 
 ---
 
-Interragir avec MongoDB
+Interact with MongoDB
 
 ```sh
 mongo --port 27117 [DATABASE] --eval "db.admin.find().forEach(printjson);"
@@ -148,5 +148,4 @@ mkpasswd -m sha-512 Password1234
 mongo --port 27117 [DATABASE] --eval 'db.admin.update({"_id":
 ObjectId("61ce278f46e0fb0012d47ee4")},{$set:{"x_shadow":"SHA_512_HASH_GENERATED"}})'
 ```
-
 

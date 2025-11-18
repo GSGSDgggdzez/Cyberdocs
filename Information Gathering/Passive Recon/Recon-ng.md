@@ -1,48 +1,48 @@
 # Recon-ng
 
-Permet d'automatiser le travail OSINT
+Allows automating OSINT work
 
-[Recon-ng](https://github.com/lanmaster53/recon-ng) 
+[Recon-ng](https://github.com/lanmaster53/recon-ng) 
 
-Créera un espace de travail 
+Create a workspace
 
 ```sh
 workspaces create WORKSPACE_NAME
 ```
 
-Commence la reconnaissance avec l'espace de travail spécifique.
+Start reconnaissance with the specific workspace.
 
 ```sh
 recon-ng -w WORKSPACE_NAME
 ```
 
-Vérifier les noms des tables de notre base de données
+Check the names of the tables in our database
 
 ```sh
 db schema
 ```
 
-Insérer le nom de domaine `target-domain.com`dans la table des domaines
+Insert the domain name `target-domain.com` into the domains table
 
 ```sh
 db insert domains
 #domain (TEXT): target-domain.com
 ```
 
-Rechercher, installer, retirer et obtenir les informations sur les modules
+Search, install, remove and get information about modules
 
 ```sh
 marketplace {search | install | remove | info} KEYWORD*
 ```
 
-Travailler avec les modules installés
+Working with installed modules
 
 ```sh
 modules search
 modules {load | search} MODULE
 ```
 
-Pour definir les valeurs d'une options
+To set option values
 
 ```sh
 options list
@@ -50,21 +50,20 @@ options set Name VALUES
 run
 ```
 
-### Clés
+### Keys
 
-Certains modules ne peuvent pas être utilisés sans une clé pour l' API de service correspondante . `K`indique que vous devez fournir la clé de service appropriée pour utiliser le module en question.
+Some modules cannot be used without a key for the corresponding service API. `K` indicates that you must provide the appropriate service key to use the module in question.
 
-- `keys list`liste les clés
-- `keys add KEY_NAME KEY_VALUE`ajoute une clé
-- `keys remove KEY_NAME`supprime une clé
+- `keys list` list keys
+- `keys add KEY_NAME KEY_VALUE` adds a key
+- `keys remove KEY_NAME` removes a key
 
-Une fois l’ensemble des modules installés, vous pouvez procéder à leur chargement et à leur exécution.
+Once all modules are installed, you can proceed to load and run them.
 
-- `modules load MODULE`charge un module installé
-- `CTRL + C`décharge le module.
-- `info`pour consulter les informations du module chargé.
-- `options list`répertorie les options disponibles pour le module choisi.
+- `modules load MODULE` loads an installed module
+- `CTRL + C` unloads the module.
+- `info` to view the loaded module information.
+- `options list` lists the available options for the chosen module.
 - `options set NAME VALUE`
-- `run`pour exécuter le module chargé.
-
+- `run` to execute the loaded module.
 

@@ -1,21 +1,21 @@
 # CTF Hint
 
-Les variables clés que vous devez connaître pour le RSA dans les CTF sont : `p, q, m, n, e, d, c`
+The key variables you need to know for RSA in CTFs are: `p, q, m, n, e, d, c`
 
-- `p et q` sont des grands nombres premiers, `n` est le produit de `p et q`.
+- `p and q` are large prime numbers, `n` is the product of `p and q`.
 
 ```sh
 n = (p * q)
 ```
 
-- La clé publique est `n et e`, la clé privée est `n et d`.
+- The public key is `n and e`, the private key is `n and d`.
 
 ```sh
 public_key = n & e
 private_key = n & d
 ```
 
-- `m` est utilisé pour représenter le message (en texte brut) et `c` représente le texte chiffré (texte crypté).
+- `m` is used to represent the message (in plaintext) and `c` represents the ciphertext (encrypted text).
 
 ```sh
 clear_text = m

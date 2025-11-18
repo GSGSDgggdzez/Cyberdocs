@@ -1,10 +1,10 @@
 # Internet Printing Protocol
 
-IPP spécialisé pour la communication entre les périphériques clients et les imprimantes tourne sur le port 631.
+IPP specialized for communication between client devices and printers runs on port 631.
 
-> Lorsqu'un port IPP est ouvert sur Internet, il est possible pour n'importe qui d'imprimer sur l'imprimante ou même de transférer des données malveillantes. Cela peut exposer de nombreuses informations sensibles telles que le nom de l'imprimante, l'emplacement, le modèle, la version du micrologiciel ou même le SSID Wi-Fi de l'imprimante.
+> When an IPP port is open on the Internet, it is possible for anyone to print to the printer or even transfer malicious data. This can expose a lot of sensitive information such as printer name, location, model, firmware version or even the printer's Wi-Fi SSID.
 
-La plupart d'entre eux semblent exécuter le serveur CUPS (qui est un simple système d'impression UNIX).
+Most of them appear to be running the CUPS server (which is a Common UNIX Printing System).
 
 ## Exploitation 
 
@@ -16,7 +16,7 @@ git clone https://github.com/RUB-NDS/PRET
 2. pjl (Printer Job Language)
 3. pcl (Printer Command Language)
 
-Essayer les trois langues juste pour voir laquelle sera comprise par l'imprimeur.
+Try all three languages just to see which one will be understood by the printer.
 
 ```sh
 python pret.py 192.168.x.x pjl
@@ -24,4 +24,4 @@ python pret.py laserjet.lan ps
 python pret.py /dev/usb/lp0 pcl
 ```
 
-> (La dernière option fonctionne si vous avez déjà une imprimante connectée à votre ordinateur)
+> (The last option works if you already have a printer connected to your computer)

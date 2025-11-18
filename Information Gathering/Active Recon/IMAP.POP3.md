@@ -2,18 +2,18 @@
 
 ## POP3 (Post Office Protocol version 3)
 
-Est un protocole utilisé pour télécharger les messages électroniques à partir d'un serveur. Le client de messagerie se connecte au serveur POP3 , s'authentifie, télécharge les nouveaux emails avant (éventuellement) de les supprimer.
+Is a protocol used to download email messages from a server. The mail client connects to the POP3 server, authenticates, downloads new emails before (possibly) deleting them.
 
-POP3 écoute sur le port `110` par défaut.
+POP3 listens on port `110` by default.
 
-Certaines commandes POP3 courantes sont :
+Some common POP3 commands are:
 
-- `USER <username>` identifie l'utilisateur
-- `PASS <password>` fournit le mot de passe de l'utilisateur
-- `STAT` demande le nombre de messages et la taille totale
-- `LIST` répertorie tous les messages sur le serveur et leurs tailles
-- `RETR <message_number>` récupère le message spécifié
-- `DELE 1` : marque un message pour suppression
+- `USER <username>` identifies the user
+- `PASS <password>` provides the user's password
+- `STAT` requests the number of messages and total size
+- `LIST` lists all messages on the server and their sizes
+- `RETR <message_number>` retrieves the specified message
+- `DELE 1`: marks a message for deletion
 
 ```sh
 telnet <FQDN/IP> 110
@@ -32,8 +32,8 @@ PASS Pa$$123
 STAT
 +OK 4 2216
 #+OK nn mm 
-# nn =  le nombre de messages électroniques dans la boîte de réception
-# mm =  la taille de la boîte de réception en octets
+# nn = the number of emails in the inbox
+# mm = the size of the inbox in bytes
 
 LIST
 +OK 4 messages:
@@ -71,21 +71,21 @@ QUIT
 
 ## IMAP (Internet Message Access Protocol) 
 
-Plus sophistiqué que POP3 et permet de synchroniser votre courrier électronique sur plusieurs appareils (et clients de messagerie). 
+More sophisticated than POP3 and allows you to synchronize your email across multiple devices (and mail clients).
 
-IMAP nécessite que chaque commande soit précédée d'une chaîne aléatoire pour pouvoir suivre la réponse. Nous ajoutons donc `c1`, puis `c2`, et ainsi de suite.
-IMAP envoie les informations de connexion en texte clair dans le reseaux.
+IMAP requires each command to be prefixed with a random string to track the response. So we add `c1`, then `c2`, and so on.
+IMAP sends login information in plain text over the network.
 
-IMAP écoute sur le port `143` par défaut.
+IMAP listens on port `143` by default.
 
-Certaines commandes IMAP courantes sont :
+Some common IMAP commands are:
 
-- `LOGIN <username> <password>` authentifie l'utilisateur
-- `SELECT <mailbox>` sélectionne le dossier de boîte aux lettres avec lequel travailler
-- `FETCH <mail_number> <data_item_name>` Exemple fetch 3 body[] pour récupérer le message numéro 3, l'en-tête et le corps.
-- `MOVE <sequence_set> <mailbox>` déplace les messages spécifiés vers une autre boîte aux lettres
-- `COPY <sequence_set> <data_item_name>` copie les messages spécifiés dans une autre boîte aux lettres
-- `LOGOUT` se déconnecte
+- `LOGIN <username> <password>` authenticates the user
+- `SELECT <mailbox>` selects the mailbox folder to work with
+- `FETCH <mail_number> <data_item_name>` Example fetch 3 body[] to retrieve message number 3, header and body.
+- `MOVE <sequence_set> <mailbox>` moves specified messages to another mailbox
+- `COPY <sequence_set> <data_item_name>` copies specified messages to another mailbox
+- `LOGOUT` logs out
 
 
 ```sh
@@ -95,7 +95,7 @@ c1 LOGIN linda Pa$$123
 #...
 c1 OK LOGIN Ok.
 
-c2 LIST "" "*" # répertorié les dossiers de courrier
+c2 LIST "" "*" # list mail folders
 * LIST (\HasNoChildren) "." "INBOX.Trash"
 * LIST (\HasNoChildren) "." "INBOX.Drafts"
 * LIST (\HasNoChildren) "." "INBOX.Templates"
@@ -103,7 +103,7 @@ c2 LIST "" "*" # répertorié les dossiers de courrier
 * LIST (\Unmarked \HasChildren) "." "INBOX"
 c2 OK LIST completed
 
-c3 EXAMINE INBOX # vérifier les nouveaux messages dans la boîte de réception
+c3 EXAMINE INBOX # check for new messages in the inbox
 * FLAGS (\Draft \Answered \Flagged \Deleted \Seen \Recent)
 * OK [PERMANENTFLAGS ()] No permanent flags permitted
 * 0 EXISTS

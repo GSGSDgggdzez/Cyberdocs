@@ -1,23 +1,23 @@
-# Static Analysic
+# Static Analysis
 
-Se fait sans exécuter le programme, qu'allons-nous identifier ?
+Done without running the program, what will we identify?
 
-- Utilisation faible ou inappropriée de la cryptographie
-- Activités de préférence exportées
-- Applications qui permettent les sauvegardes
-- Applications déboguables
-- Autorisations des applications.
-- Instance(s) Firebase
-- Données sensibles dans le code
-- Les cles API Secret
-- Les stockage S3 Bucket
+- Weak or inappropriate use of cryptography
+- Exported preference activities
+- Applications that allow backups
+- Debuggable applications
+- Application permissions
+- Firebase instance(s)
+- Sensitive data in code
+- Secret API keys
+- S3 Bucket storage
 
-## Quoi chercher?
-Données sensibles dans le code, comment  des noms utilisateurs, des mots de passe, IP interne et plus encore...
+## What to look for?
+Sensitive data in code, such as usernames, passwords, internal IPs and more...
 
-- **Utilisation de la cryptographie faible ou inappropriée**
+- **Weak or inappropriate use of cryptography**
 
-peuvent entraîner l'exposition de données sensibles, une fuite de clé, une authentification brisée, une session non sécurisée et une attaque par usurpation d'identité.
+can lead to exposure of sensitive data, key leakage, broken authentication, insecure session and spoofing attack.
 
 ```sh
 grep -r "SecretKeySpec" *
@@ -26,42 +26,42 @@ grep -rli "iv"
 ```
 
 
-- **Activités de préférence exportées**
+- **Exported preference activities**
 
-Lorsqu'une activité est partagée avec d'autres applications sur l'appareil, elle est donc accessible à toute autre application sur l'appareil (exploitez ça en analyse dynamique). 
+When an activity is shared with other applications on the device, it is therefore accessible to any other application on the device (exploit this in dynamic analysis).
 
 ```sh
 cat AndroidManifest.xml | grep activity | grep "android:exported" --color # if true
 ```
 
 
-- **Applications qui permettent les sauvegardes**
+- **Applications that allow backups**
 
-Considéré comme un problème de sécurité car les gens pourraient sauvegarder votre application via ADB, puis obtenir des données privées de votre application sur leur PC
+Considered a security issue because people could back up your application via ADB, then get private data from your application on their PC
 
 ```sh
 cat AndroidManifest.xml | grep "activity:allowBackup" --color # if true
 ```
 
-- **Applications déboguables**
+- **Debuggable applications**
 
-Activé sur l'application, ce qui permet aux rétro-ingénieurs d'y connecter plus facilement un débogueur. Cela permet de vider une trace de pile et d'accéder aux classes d'assistance de débogage. (exploitez ça en analyse dynamique). 
+Enabled on the application, which makes it easier for reverse engineers to attach a debugger to it. This allows dumping a stack trace and accessing debug helper classes. (exploit this in dynamic analysis).
 
 ```sh
 cat AndroidManifest.xml | grep "activity:debuggable" --color # if true
 ```
 
-- **Autorisations d'application**
+- **Application permissions**
 
-Android vous demandera toujours d'approuver les autorisations dangereuses.
+Android will always ask you to approve dangerous permissions.
 
 ```sh
 cat AndroidManifest.xml | grep "android.permission" --color
 ```
 
-- **Instance(s) Firebase**
+- **Firebase instance(s)**
 
-Les scripts aident les analystes de sécurité à identifier les instances Firebase mal configurées.
+Scripts help security analysts identify misconfigured Firebase instances.
 
 ```sh
 git clone https://github.com/shivsahni/FireBaseScanner
@@ -74,15 +74,14 @@ pip install -r requirements
 python firebaseEnum.py -k  /path/apk
 ```
 
-Exemple d'exploitation firebase:
+Example of firebase exploitation:
 - https://website.firebaseio.com/.json
 - https://website.firebaseio.com/folder/.json
 
 
-- **Demarrer une activitées exposer**
+- **Start an exposed activity**
  
 ```sh
 adb shell am start ACTIVITY
-# Exemple: adb shell am start b3nac.injuredandroid/.b25lActivity
+# Example: adb shell am start b3nac.injuredandroid/.b25lActivity
 ```
-

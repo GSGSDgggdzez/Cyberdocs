@@ -1,47 +1,43 @@
 # Active Directory Certificate Services
 
-AD CS est l'implémentation de l'infrastructure à clés publiques (PKI) de Microsoft.
+AD CS is Microsoft's implementation of Public Key Infrastructure (PKI).
 
-AD CS est une fonction privilégiée, et s'exécute normalement sur des contrôleurs de domaine sélectionnés. AD CS est utilisé pour plusieurs choses:
+AD CS is a privileged role and normally runs on selected domain controllers. AD CS is used for several things:
 
-- Le chiffrement des systèmes de fichiers
-- La création et la vérification des signatures numériques
-- L'authentification des utilisateurs, ce qui en fait une voie prometteuse pour les attaquants. 
+- File system encryption
+- Creating and verifying digital signatures
+- User authentication, making it a promising avenue for attackers.
 
-> Les certificats peuvent survivre à la rotation des informations d'identification, ce qui signifie que même si le mot de passe d'un compte compromis est réinitialisé, cela ne fera rien pour invalider le certificat généré de manière malveillante, ce qui permet un vol d'informations d'identification persistant jusqu'à 10 ans ! 
+> Certificates can outlive credential rotation, which means that even if a compromised account's password is reset, this will do nothing to invalidate the maliciously generated certificate, allowing persistent credential theft for up to 10 years!
 
-
-Flux de demandes et de génération de certificats : 
+Certificate request and generation flow:
 
 ![](Images/cs.png)
 
+# Default Domain User Privileges
+By default, any user who is a member of the Authenticated Users group (literally all AD accounts) can enroll up to 10 new machines on the domain.
 
-# Privilèges d'utilisateur de domaine par défaut
-Par défaut, tout utilisateur membre du groupe Utilisateurs authentifiés (littéralement tous les comptes AD) peut inscrire jusqu'à 10 nouvelles machines sur le domaine.
+This method is often used in organizations to allow users to bring their own device (BYOD) and enroll it for use on the domain. This is not really a vulnerability in itself, but it has led to privilege escalation vectors.
 
-Cette méthode est souvent utilisée dans les organisations pour permettre aux utilisateurs d'apporter leur propre appareil (BYOD) et de l'inscrire pour une utilisation sur le domaine. Ce n'est pas vraiment une vulnérabilité en soi, mais elle a conduit à des vecteurs d'escalade de privilèges.
+When we enroll a new host in AD, we are designated as the **owner** of that host. This gives us certain permissions on the AD object associated with that host.
 
-Lorsque nous inscrivons un nouvel hôte dans AD , nous sommes désignés comme **propriétaire** de cet hôte. Cela nous donne certaines autorisations sur l' objet AD associé à cet hôte. 
+Two permissions in particular are problematic here:
+- **Validated Write to DNS Hostname** - This permission allows us to update the DNS hostname of our AD object associated with the host.
 
-Deux autorisations en particulier posent problème ici :
-- **Valider l'écriture sur le nom d'hôte DNS** - Cette autorisation nous permet de mettre à jour le nom d'hôte DNS de notre objet AD associé à l'hôte.
+- **Validated Write to Service Principal Name (SPN)** - This permission allows us to update the SPN of our AD object associated with the host.
 
-- **Valider l’écriture sur le nom principal du service (SPN)** - Cette autorisation nous permet de mettre à jour le SPN de notre objet AD associé à l’hôte.
+# Terminology
 
+- **PKI (Public Key Infrastructure)** - A system that manages certificates and public key encryption.
 
-# Terminologie
+- **AD CS (Active Directory Certificate Services)** - Microsoft's PKI implementation that typically runs on domain controllers.
 
-- **PKI (Public Key Infrastructure)** - est un système qui gère les certificats et le cryptage à clé publique.
-    
-- **AD CS (Active Directory Certificate Services)** - est l'implémentation PKI de Microsoft qui s'exécute généralement sur les contrôleurs de domaine.
+- **CA (Certificate Authority)** - A PKI that issues certificates.
 
-- **CA (Certificate Authority)** - est une PKI qui délivre des certificats.
-    
-- **Modèle de certificat** - un ensemble de paramètres et de politiques qui définit comment et quand un certificat peut être émis par une autorité de certification
+- **Certificate Template** - A set of parameters and policies that define how and when a certificate can be issued by a certificate authority.
 
-- **CSR (Certificate Signing Request)** - est un message envoyé à une autorité de certification pour demander un certificat signé.
+- **CSR (Certificate Signing Request)** - A message sent to a certificate authority to request a signed certificate.
 
-- **EKU (Extended/Enhanced Key Usage)** - sont des identifiants d'objet qui définissent comment un certificat généré peut être utilisé
+- **EKU (Extended/Enhanced Key Usage)** - Object identifiers that define how a generated certificate can be used.
 
-
-Certipy est un outil offensif pour l'énumération et l'exploitation des vulnérabilités et des erreurs de configuration d'AD CS
+Certipy is an offensive tool for enumerating and exploiting AD CS vulnerabilities and misconfigurations.

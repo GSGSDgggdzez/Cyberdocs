@@ -4,7 +4,7 @@
 - [Authentication Bruteforcing](./Authentication%20Bruteforcing.md)
 
 ## Default Password
-Si nous connaissons le périphérique cible, nous pouvons rechercher les mots de passe par défaut et les essayer. Listes de sites Web fournissant des mots de passe par défaut pour divers produits.
+If we know the target device, we can search for default passwords and try them. Lists of websites providing default passwords for various products.
 
 https://cirt.net/passwords
 https://default-password.info/
@@ -17,10 +17,10 @@ https://wiki.skullsecurity.org/index.php?title=Passwords
 cewl -d 5 -m <length> -w output.txt https://target-website.com
 ```
 
-**Générateur de nom d'utilisateur**
+**Username Generator**
 
-Il est essentiel de recueillir les noms des employés au stade du dénombrement.
-Pour créer une liste avec la plupart des combinaisons possibles a base du prénom et du nom.
+It is essential to gather employee names during the enumeration stage.
+To create a list with most possible combinations based on first name and last name.
 
 ```sh
 echo "John Smith" > users.lst
@@ -34,10 +34,9 @@ cd username-anarchy
 ```
 
 ## Password Profiling 
-Si on onnais certains détails sur une cible spécifique, tels que sa date de naissance, le nom de son animal de compagnie, le nom de son entreprise, etc., cela pourrait être un outil utile pour générer des mots de passe basés sur ces informations connues.
+If we know certain details about a specific target, such as their date of birth, pet name, company name, etc., this could be a useful tool for generating passwords based on this known information.
 
 ```sh
 cupp -i
 ```
-
 

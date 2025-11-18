@@ -1,27 +1,27 @@
 # OpenCTI
-[OpenCTI](https://github.com/OpenCTI-Platform/opencti)  est une autre plateforme open source conçue pour fournir aux organisations les moyens de gérer le CTI via le stockage, l'analyse, la visualisation et la présentation des campagnes de menaces, des logiciels malveillants et des IOC.
+[OpenCTI](https://github.com/OpenCTI-Platform/opencti) is another open source platform designed to provide organizations with the means to manage CTI through storage, analysis, visualization and presentation of threat campaigns, malware and IOCs.
 
-> l'objectif principal de la plateforme est de créer un outil complet qui permet aux utilisateurs de capitaliser sur des informations techniques et non techniques tout en développant des relations entre chaque élément d'information et sa source principale.
+> The main objective of the platform is to create a comprehensive tool that allows users to capitalize on technical and non-technical information while developing relationships between each piece of information and its primary source.
 
-## Comprendre le Dashboard 
+## Understanding the Dashboard
 
 ### Activities
-Couvre les incidents de sécurité ingérés sur la plateforme sous forme de rapports.  Elle permet aux analystes d'enquêter facilement sur ces incidents. 
+Covers security incidents ingested on the platform as reports. It allows analysts to easily investigate these incidents.
 
-- **Analysis**: Contient les entités d'entrée dans les rapports analysés et les références externes associées
-Ils permettent aux analystes d'identifier plus facilement la source des informations.
-
-
-- **Events** : Ici, les analystes peuvent enregistrer leurs conclusions et enrichir leurs informations sur les menaces en créant des associations pour leurs incidents.
+- **Analysis**: Contains the input entities in the analyzed reports and associated external references
+They allow analysts to more easily identify the source of information.
 
 
-- **Observations** : Les éléments techniques, les règles de détection et les artefacts identifiés lors d'une cyberattaque sont répertoriés sous cet onglet. 
+- **Events**: Here, analysts can record their findings and enrich their threat information by creating associations for their incidents.
+
+
+- **Observations**: Technical elements, detection rules and artifacts identified during a cyberattack are listed under this tab.
 
 ### Knowledge
-Fournit des données liées aux outils utilisés par les adversaires, aux victimes ciblées et au type d'acteurs de la menace et de campagnes utilisées.
+Provides data related to tools used by adversaries, targeted victims and the type of threat actors and campaigns used.
 
-- **Threads** : Toutes les informations classées comme menaçantes pour une organisation ou des informations seront classées dans la catégorie des menaces
+- **Threads**: All information classified as threatening to an organization or information will be classified in the threat category
 
-- **Arsenal** : Cet onglet répertorie tous les éléments liés à une attaque et tous les outils légitimes identifiés à partir des entités.
+- **Arsenal**: This tab lists all elements related to an attack and all legitimate tools identified from the entities.
 
-- **Entities** : Cet onglet catégorise toutes les entités en fonction des secteurs opérationnels, des pays, des organisations et des individus. 
+- **Entities**: This tab categorizes all entities based on operational sectors, countries, organizations and individuals.

@@ -1,10 +1,9 @@
 # GPO
 
-Mettre un fichier dans `NETLOGON` qui vas etre activer a l'ouverture de sessions
+Place a file in `NETLOGON` that will be activated at login
 
-
-- Configuration Utilisateur
-- Strategies
-- Parametre Windows
-- Script (O/F)
-- Ouverture de session
+- User Configuration
+- Policies
+- Windows Settings
+- Scripts (Logon/Logoff)
+- Logon

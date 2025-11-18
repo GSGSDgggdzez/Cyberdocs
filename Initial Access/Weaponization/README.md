@@ -1,6 +1,6 @@
-Techniques courantes de militarisation qui permet de créer des charges utiles personnalisées pour obtenir un accès initial.
+Common weaponization techniques that allow creating custom payloads to obtain initial access.
 
-> Encoder votre charge utile en `base64`
+> Encode your payload in `base64`
 
 ## Client-Side Attacks
 
@@ -17,4 +17,3 @@ Techniques courantes de militarisation qui permet de créer des charges utiles p
 ## Linux
 
 [Social Engineering Linux Target](./Social%20Engineering%20Linux%20Target.md)
-

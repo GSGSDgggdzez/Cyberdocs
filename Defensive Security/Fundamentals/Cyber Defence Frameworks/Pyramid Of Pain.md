@@ -2,43 +2,43 @@
 
 ![](Images/pop.png)
 
-Ce concept bien connu est appliqué aux solutions de cybersécurité telles que:
+This well-known concept is applied to cybersecurity solutions such as:
 - [Cisco Security](https://gblogs.cisco.com/ca/2020/08/26/the-canadian-bacon-cisco-security-and-the-pyramid-of-pain/)
 - [SentinelOne](https://www.sentinelone.com/blog/revisiting-the-pyramid-of-pain-leveraging-edr-data-to-improve-cyber-threat-intelligence/)
-- [SOCRadar](https://socradar.io/re-examining-the-pyramid-of-pain-to-use-cyber-threat-intelligence-more-effectively/) 
+- [SOCRadar](https://socradar.io/re-examining-the-pyramid-of-pain-to-use-cyber-threat-intelligence-more-effectively/) 
 
-Pour améliorer l'efficacité des exercices de CTI (Cyber ​​Threat Intelligence), de chasse aux menaces et de réponse aux incidents.
+To improve the effectiveness of CTI (Cyber Threat Intelligence), threat hunting and incident response exercises.
 
 ## Hash Values (Trivial)
 
 
-Divers outils en ligne peuvent être utilisés pour effectuer des recherches de hachage, comme [VirusTotal](https://www.virustotal.com/gui/) et [Metadefender Cloud - OPSWAT](https://metadefender.opswat.com/?lang=en) .
+Various online tools can be used to perform hash searches, such as [VirusTotal](https://www.virustotal.com/gui/) and [Metadefender Cloud - OPSWAT](https://metadefender.opswat.com/?lang=en).
 
 ## IP Address (Easy)
-La connaissance des adresses IP utilisées par un adversaire permet bloquer, abandonner ou refuser les demandes entrantes provenant d'adresses IP sur votre paramètre ou votre pare-feu externe. 
+Knowing the IP addresses used by an adversary allows you to block, drop or deny incoming requests from IP addresses on your perimeter or external firewall.
 
-L'un des moyens par lesquels un adversaire peut rendre difficile la réalisation d'un blocage IP consiste à utiliser  Fast Flux .
+One way an adversary can make IP blocking difficult is by using Fast Flux.
 
->  Fast Flux est une technique DNS utilisée par les botnets pour masquer les activités de phishing, de proxy Web, de diffusion de logiciels malveillants et de communication de logiciels malveillants derrière des hôtes compromis agissant comme des proxys. 
+> Fast Flux is a DNS technique used by botnets to hide phishing, web proxy, malware distribution and malware communication activities behind compromised hosts acting as proxies.
 >
-> L’objectif de l’utilisation du réseau Fast Flux est de rendre la communication entre les logiciels malveillants et leur serveur de commande et de contrôle (C&C) difficile à découvrir par les professionnels de la sécurité.
+> The goal of using Fast Flux network is to make communication between malware and their Command and Control (C&C) server difficult to discover by security professionals.
 
 
-Ainsi, le concept principal d'un réseau Fast Flux est d'avoir plusieurs adresses IP associées à un nom de domaine, qui est en constante évolution.
+Thus, the main concept of a Fast Flux network is to have multiple IP addresses associated with a domain name, which is constantly changing.
 
 
-En savoir plus : [Fast Flux 101 : Comment les cybercriminels améliorent la résilience de leur infrastructure pour échapper à la détection et aux démantèlements des forces de l'ordre.](https://unit42.paloaltonetworks.com/fast-flux-101/)
+Read more: [Fast Flux 101: How Cybercriminals Improve the Resilience of Their Infrastructure to Evade Detection and Law Enforcement Takedowns.](https://unit42.paloaltonetworks.com/fast-flux-101/)
 
 
 ## Domain Name (Simple)
 
-Les noms de domaine peuvent être un peu plus difficiles à modifier pour l'attaquant, car il devra probablement acheter le domaine, l'enregistrer et modifier les enregistrements DNS. 
+Domain names can be a bit more difficult for the attacker to change, as they will likely have to purchase the domain, register it and modify DNS records.
 
-Malheureusement pour les défenseurs, de nombreux fournisseurs DNS fournissent des API pour permettre à l'attaquant de changer encore plus facilement de domaine.
+Unfortunately for defenders, many DNS providers offer APIs to allow the attacker to change domains even more easily.
 
-> Punycode est un moyen de convertir des mots qui ne peuvent pas être écrits en ASCII en un codage Unicode ASCII.
+> Punycode is a way to convert words that cannot be written in ASCII to an ASCII Unicode encoding.
 
-les attaquants utilisent les services de raccourcissement d'URL suivants pour générer des liens malveillants : 
+attackers use the following URL shortening services to generate malicious links:
 
 - bit.ly
 - goo.gl
@@ -51,27 +51,27 @@ les attaquants utilisent les services de raccourcissement d'URL suivants pour g�
 
 
 ## Host Artifacts (Annoying)
-Les artefacts de l'hôte sont les traces ou les observables que les attaquants laissent sur le système, tels que les valeurs de registre, l'exécution de processus suspects, les modèles d'attaque ou IOC (indicateurs de compromission), les fichiers supprimés par des applications malveillantes ou tout autre élément exclusif à la menace actuelle.
+Host artifacts are the traces or observables that attackers leave on the system, such as registry values, suspicious process execution, attack patterns or IOCs (Indicators of Compromise), files dropped by malicious applications or anything else unique to the current threat.
 
 ## Network Artifacts (Annoying)
-Un artefact réseau peut être une chaîne d'agent utilisateur, des informations C2 ou des modèles d'URI suivis par les requêtes HTTP POST.
+A network artifact can be a user agent string, C2 information, or URI patterns followed by HTTP POST requests.
 
-Voici les chaînes User-Agent les plus courantes trouvées pour le [cheval de Troie Emotet Downloader.](https://www.mcafee.com/blogs/other-blogs/mcafee-labs/emotet-downloader-trojan-returns-in-force/)
+Here are the most common User-Agent strings found for the [Emotet Downloader Trojan.](https://www.mcafee.com/blogs/other-blogs/mcafee-labs/emotet-downloader-trojan-returns-in-force/)
 
-> Si vous parvenez à détecter les chaînes User-Agent personnalisées utilisées par l'attaquant, vous pourrez peut-être les bloquer, créant ainsi d'avantage d'obstacles et rendant sa tentative de compromettre le réseau plus ennuyeuse
+> If you can detect the custom User-Agent strings used by the attacker, you may be able to block them, creating more obstacles and making their attempt to compromise the network more annoying
 
 
 ## Tools (Challeging)
-Les signatures antivirus, les règles de détection et les règles YARA peuvent être d’excellentes armes à utiliser contre les attaquants à ce stade.
+Antivirus signatures, detection rules and YARA rules can be excellent weapons to use against attackers at this stage.
 
-[MalwareBazaar](https://bazaar.abuse.ch/)  et  [Malshare](https://malshare.com/)  sont de bonnes ressources pour vous donner accès aux échantillons, aux flux malveillants et aux résultats YARA – tout cela peut être très utile lorsqu'il s'agit de traquer les menaces et de répondre aux incidents.
+[MalwareBazaar](https://bazaar.abuse.ch/) and [Malshare](https://malshare.com/) are good resources to give you access to samples, malicious feeds and YARA results – all of which can be very helpful when it comes to threat hunting and incident response.
 
-Pour les règles de détection, [ SOC Prime Threat Detection Marketplace](https://tdm.socprime.com/) est une plate-forme sur laquelle les professionnels de la sécurité partagent leurs règles de détection pour différents types de menaces, y compris les dernières CVE exploitées dans la nature par des adversaires.
+For detection rules, [SOC Prime Threat Detection Marketplace](https://tdm.socprime.com/) is a platform where security professionals share their detection rules for different types of threats, including the latest CVEs being exploited in the wild by adversaries.
 
-**Le hachage flou** est également une arme puissante contre les outils de l'attaquant. Le hachage flou vous aide à  effectuer une analyse de similarité : faites correspondre deux fichiers présentant des différences mineures en fonction des valeurs de hachage floues. 
+**Fuzzy hashing** is also a powerful weapon against the attacker's tools. Fuzzy hashing helps you perform similarity analysis: match two files with minor differences based on fuzzy hash values.
 
 ## TTPs (Tough)
 
-Si vous parvenez à détecter et à répondre rapidement aux TTP, vous ne laissez pratiquement aucune chance à vos adversaires de riposter.  
+If you can detect and respond quickly to TTPs, you leave practically no chance for your adversaries to fight back.
 
-Par exemple, si vous pouviez détecter une attaque [Pass-the-Hash](https://www.beyondtrust.com/resources/glossary/pass-the-hash-pth-attack) à l'aide de la surveillance du journal des événements Windows et y remédier, vous seriez en mesure de trouver l'hôte compromis très rapidement et d'arrêter le mouvement latéral à l'intérieur de votre réseau .
+For example, if you could detect a [Pass-the-Hash](https://www.beyondtrust.com/resources/glossary/pass-the-hash-pth-attack) attack using Windows event log monitoring and remediate it, you would be able to find the compromised host very quickly and stop lateral movement inside your network.

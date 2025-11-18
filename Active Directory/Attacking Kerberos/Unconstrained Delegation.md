@@ -1,53 +1,52 @@
 # Unconstrained Delegation
 
-Comment abuser de la délégation complète afin de récupérer le TGT d’un utilisateur, nous permettant ainsi de nous authentifier auprès de n’importe quel service en son nom.
+How to abuse unconstrained delegation in order to retrieve a user's TGT, thus allowing us to authenticate to any service on their behalf.
 
 # Exploitation
 
-Cela signifie que maintenant, avec ces informations, le service peut demander n’importe quel ticket de service au nom de l’utilisateur. Je répète : il peut demander n’importe. quel. ticket de service. au nom de l’utilisateur. Il peut se faire passer pour l’utilisateur pour s’authentifier auprès de n’importe quel service.
+This means that now, with this information, the service can request any service ticket on behalf of the user. I repeat: it can request any. service. ticket. on behalf of the user. It can impersonate the user to authenticate to any service.
 
-Ainsi, les comptes ayant la délégation complète sont des cibles prioritaires pour les attaquants, puisqu’une fois un de ces comptes compromis, il suffit d’attendre des authentifications d’utilisateurs pour pouvoir s’authentifier n’importe où en leur nom.
+Thus, accounts with unconstrained delegation are priority targets for attackers, since once one of these accounts is compromised, they just need to wait for user authentications to be able to authenticate anywhere on their behalf.
 
-# Exemple
+# Example
 
-Il y a ici la machine `WEB-SERVER-01`  qui est en “Unconstrained Delegation” sur le domaine `dom.local`
+Here is the machine `WEB-SERVER-01` which has "Unconstrained Delegation" on the domain `dom.local`
 
-Il est possible de s’authentifier auprès de cette machine pour utiliser ses partages réseau. Nous imaginons qu’un attaquant ait réussi à compromettre cette machine, et qu’il est administrateur local de cette machine.
+It is possible to authenticate to this machine to use its network shares. We imagine that an attacker has successfully compromised this machine and is a local administrator on it.
 
-L’attaquant doit alors attendre qu’un utilisateur à privilèges se connecte sur la machine. 
-Il va donc monitorer les connexions et inspecter les tickets de service afin de voir si un TGT est présent dans l’un deux.
+The attacker must then wait for a privileged user to connect to the machine.
+They will monitor connections and inspect service tickets to see if a TGT is present in one of them.
 
-Pour cela, il utilise l’outil `Rubeus` ou `kekeo`
+For this, they use the `Rubeus` or `kekeo` tool
 
 ```
 Rubeus monitor /interval:5
 ```
 
-Il se trouve qu’à un moment donné, le compte support-account, administrateur de domaine, doit aller voir quelque chose sur le disque dur de `WEB-SERVER-01`. Pour cela, il se connecte au partage réseau du serveur `\\WEB-SERVER-01\c$.`
+It turns out that at some point, the support-account, domain administrator, needs to check something on the `WEB-SERVER-01` hard drive. To do this, they connect to the server's network share `\\WEB-SERVER-01\c$`.
 
-Cette connexion est détectée par Rubeus
-Comme cette machine est en “Unconstrained Delegation”, le ticket de service envoyé par l’administrateur de domaine contient une copie de son TGT, copie qui va être extrait par Rubeus.
+This connection is detected by Rubeus.
+Since this machine has "Unconstrained Delegation", the service ticket sent by the domain administrator contains a copy of their TGT, which will be extracted by Rubeus.
 
-Maintenant en possession du TGT d’un administrateur de domaine (encodé en base 64), l’attaquant peut demander un ticket de service pour utiliser le service LDAP du contrôleur de domaine `DC-01`. 
+Now in possession of a domain administrator's TGT (base64 encoded), the attacker can request a service ticket to use the LDAP service of the domain controller `DC-01`.
 
 ```
-Rubeus.exe asktgs /ticket:<ticket en base64> /service:ldap/dc-01.dom.local /ptt
+Rubeus.exe asktgs /ticket:<base64 ticket> /service:ldap/dc-01.dom.local /ptt
 ```
 
-Tout fonctionne comme prévu.
-Nous pouvons vérifier la présence du ticket de service en mémoire, pour l’utilisateur  (puisque l’attaquant a utilisé son TGT), et pour le service LDAP du contrôleur de domaine.
+Everything works as expected.
+We can verify the presence of the service ticket in memory, for the user (since the attacker used their TGT), and for the LDAP service of the domain controller.
 
 ```
 klist
 ```
 
-Avec ce ticket de service, il est possible de demander au contrôleur de domaine de se synchroniser avec l’attaquant.
+With this service ticket, it is possible to ask the domain controller to synchronize with the attacker.
 
-Ici, l’attaquant a uniquement demandé de synchroniser le compte krbtgt en vue de faire un “Golden Ticket” avec `mimikatz`
+Here, the attacker only requested to synchronize the krbtgt account in order to perform a "Golden Ticket" with `mimikatz`
 
 ```
 lsadump::dcsync /dc:dc-01.dom.local /domain:dom.local /user:krbtgt
 ```
 
-
-Avec le hash NT du compte krbtgt, l’attaquant peut tout faire sur l’Active Directory.
+With the NT hash of the krbtgt account, the attacker can do anything on the Active Directory.

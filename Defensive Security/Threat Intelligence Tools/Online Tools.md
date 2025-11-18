@@ -2,33 +2,33 @@
 
 ## Urlscan.io
 
-[**Urlscan.io**](https://urlscan.io/) Scanne et analyse les sites Web. Il est utilisé pour automatiser le processus de navigation et d’exploration des sites Web afin d’enregistrer les activités et les interactions. Pour rechercher des URL malveillantes.
+[**Urlscan.io**](https://urlscan.io/) Scans and analyzes websites. It is used to automate the process of browsing and crawling websites to record activities and interactions. To search for malicious URLs.
 
 ## Abuse.ch
 
-Pour suivre les indicateurs de malwares et de botnets.
+To track malware and botnet indicators.
 
-- [FeodoTracker](https://feodotracker.abuse.ch/) : Vise à partager des renseignements sur les serveurs botnet Command & Control (C&C) associés à Dridex, Emotes (alias Heodo), TrickBot, QakBot et BazarLoader/BazarBackdoor. 
+- [FeodoTracker](https://feodotracker.abuse.ch/): Aims to share intelligence on botnet Command & Control (C&C) servers associated with Dridex, Emotes (aka Heodo), TrickBot, QakBot and BazarLoader/BazarBackdoor.
 
 
-- [Black List SSL](https://sslbl.abuse.ch/) : Pour identifier et détecter les connexions SSL malveillantes. À partir de ces connexions, les certificats SSL utilisés par les serveurs du botnet C2 seraient identifiés et mis à jour sur une liste noire fournie pour utilisation. 
+- [Black List SSL](https://sslbl.abuse.ch/): To identify and detect malicious SSL connections. From these connections, SSL certificates used by botnet C2 servers would be identified and updated on a blacklist provided for use.
 
-- [URLhaus](https://urlhaus.abuse.ch/) : Permet le partage d'URL malveillantes utilisées pour la distribution de logiciels malveillants. En tant qu'analyste, vous pouvez rechercher dans la base de données les domaines, les URL, les hachages et les types de fichiers suspectés d'être malveillants et valider vos enquêtes.
+- [URLhaus](https://urlhaus.abuse.ch/): Allows sharing of malicious URLs used for malware distribution. As an analyst, you can search the database for domains, URLs, hashes and file types suspected of being malicious and validate your investigations.
 
-- [ThreatFox](https://threatfox.abuse.ch/) : Rechercher, partager et exporter des IOC  associés aux logiciels malveillants. Les IOC peuvent être exportés dans divers formats tels que les événements MISP, les fichiers JSON et  CSV.
+- [ThreatFox](https://threatfox.abuse.ch/): Search, share and export IOCs associated with malware. IOCs can be exported in various formats such as MISP events, JSON files and CSV.
 
 
 ## PhishTool
 
 [PhishTool](https://www.phishtool.com/)
-Permet d'enquêter sur les e-mails.
+Allows investigating emails.
 
 ## Cisco Talos Intelligence
 
-[Cisco Talos Intelligence](https://talosintelligence.com/) pour la collecte d'informations.
+[Cisco Talos Intelligence](https://talosintelligence.com/) for information gathering.
 
-Cisco Talos regroupe six équipes clés :
+Cisco Talos brings together six key teams:
 
-- **Intelligence sur les menaces et interdiction :** Transforme de simples IOC en informations riches en contexte.
+- **Threat Intelligence and Interdiction:** Transforms simple IOCs into rich contextual information.
 
-Plus d'informations: [livre blanc.](https://www.talosintelligence.com/docs/Talos_WhitePaper.pdf)
+More information: [white paper.](https://www.talosintelligence.com/docs/Talos_WhitePaper.pdf)

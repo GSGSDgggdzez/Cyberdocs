@@ -1,41 +1,41 @@
 # TCPDump
 
-## Options de capture de base
-Ces options peuvent être enchaînés pour définir la manière dont la sortie de l'outil nous est affichée dans STDOUT
+## Basic Capture Options
+These options can be chained to define how the tool's output is displayed to us in STDOUT
 
-|          Options          | Résultat                                                                                                                      |
+|          Options          | Result                                                                                                                      |
 | :---------------------------: | --------------------------------------------------------------------------------------------------------------------------------- |
-|              `-D`               | Affiche toutes les interfaces disponibles pour la capture.                                                                        |
-|              `-i`               | Sélectionne une interface à partir de laquelle effectuer la capture. ex. `-i eth0`                                                |
-|              `-n`               | Ne résolvez pas les noms d’hôtes.                                                                                                 |
-|              `-nn`              | Ne résolvez pas les noms d’hôtes ou les ports connus.                                                                             |
-|              `-e`               | Récupérera l'en-tête Ethernet ainsi que les données de couche supérieure.                                                         |
-|              `-X`               | Afficher le contenu des paquets en hexadécimal et en ASCII.                                                                       |
-|              `-XX`              | Identique à X, mais spécifiera également les en-têtes Ethernet. (comme en utilisant `Xe`)                                         |
-|         `-v, -vv, -vvv`         | Augmentez la verbosité des sorties affichées et enregistrées.                                                                     |
-|              `-c`               | Prenez un nombre spécifique de paquets, puis quittez le programme.                                                                |
-|              `-s`               | Définit la quantité d'un paquet à récupérer.                                                                                      |
-|              `-S`               | changer les numéros de séquence relatifs dans l'affichage de capture en numéros de séquence absolus. (13248765839 au lieu de 101) |
-|              `-q`               | Imprimez moins d’informations de protocole.                                                                                       |
-|        `-r fichier.pcap`        | Lire à partir d'un fichier.                                                                                                       |
-|        `-w fichier.pcap`        | Écrire dans un fichier                                                                                                            |
-| `-t , -tt, -ttt, -tttt, -ttttt` | Pour gérer les 0 horodatages 1                                                                                                    |
+|              `-D`               | Displays all available interfaces for capture.                                                                        |
+|              `-i`               | Selects an interface from which to perform capture. ex. `-i eth0`                                                |
+|              `-n`               | Do not resolve host names.                                                                                                 |
+|              `-nn`              | Do not resolve host names or well-known ports.                                                                             |
+|              `-e`               | Will retrieve the Ethernet header as well as upper layer data.                                                         |
+|              `-X`               | Display packet contents in hexadecimal and ASCII.                                                                       |
+|              `-XX`              | Same as X, but will also specify Ethernet headers. (like using `Xe`)                                         |
+|         `-v, -vv, -vvv`         | Increase verbosity of displayed and recorded outputs.                                                                     |
+|              `-c`               | Capture a specific number of packets, then exit the program.                                                                |
+|              `-s`               | Sets the amount of a packet to capture.                                                                                      |
+|              `-S`               | Change relative sequence numbers in capture display to absolute sequence numbers. (13248765839 instead of 101) |
+|              `-q`               | Print less protocol information.                                                                                       |
+|        `-r file.pcap`        | Read from a file.                                                                                                       |
+|        `-w file.pcap`        | Write to a file                                                                                                            |
+| `-t , -tt, -ttt, -tttt, -ttttt` | To handle 0 timestamps 1                                                                                                    |
 ---
 
-Capturer sur une interface
+Capture on an interface
 
 ```sh
 sudo tcpdump -i (interface) -<options>
 sudo tcpdump -i eth0 -nnvXX
 ```
 
-Ecouter sur un port
+Listen on a port
 
 ```sh
 sudo tcpdump port 9001 -A
 ```
 
-Filtre un fichier `.pcap` de wireshark
+Filter a Wireshark `.pcap` file
 
 ```sh
 sudo tcpdump -n -r file.pcap
@@ -46,18 +46,18 @@ sudo tcpdump -n port <PORT> -r read.pcap
 
 ## Packet Filtering
 
-| Filtre         | Résultat                                                                                                                               |
+| Filter         | Result                                                                                                                               |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `host`               | `host`filtrera le trafic visible pour afficher tout ce qui implique l'hôte désigné. Bidirectionnel                                         |
-| `src / dst`          | `src`et `dest`sont des modificateurs. Nous pouvons les utiliser pour désigner un hôte ou un port source ou de destination.                 |
-| `filet`              | `net`nous montrera tout trafic provenant ou destiné au réseau désigné. Il utilise la notation /.                                           |
-| `proto`              | filtrera pour un type de protocole spécifique. (Ether, TCP, UDP et ICMP par exemples)                                                      |
-| `port`               | `port`est bidirectionnel. Il affichera tout trafic avec le port spécifié comme source ou destination.                                      |
-| `portrange`          | `portrange`nous permet de spécifier une plage de ports. (0-1024)                                                                           |
-| `less / greate "<>"` | `less`et `greater`peut être utilisé pour rechercher un paquet ou une option de protocole d'une taille spécifique.                          |
-| `and / &&`           | `and` `&&`peut être utilisé pour concaténer deux filtres différents ensemble. par exemple, l'hôte src ET le port.                          |
-| `or`                 | `or`permet une correspondance sur l'une des deux conditions. Il n'est pas nécessaire que les deux soient remplies. Cela peut être délicat. |
-| `not`                | `not`est un modificateur qui dit tout sauf x. Par exemple, pas UDP.                                                                        |
+| `host`               | `host` will filter visible traffic to show everything involving the designated host. Bidirectional                                         |
+| `src / dst`          | `src` and `dest` are modifiers. We can use them to designate a source or destination host or port.                 |
+| `net`              | `net` will show us all traffic from or to the designated network. It uses the / notation.                                           |
+| `proto`              | will filter for a specific protocol type. (Ether, TCP, UDP and ICMP for examples)                                                      |
+| `port`               | `port` is bidirectional. It will display all traffic with the specified port as source or destination.                                      |
+| `portrange`          | `portrange` allows us to specify a range of ports. (0-1024)                                                                           |
+| `less / greate "<>"` | `less` and `greater` can be used to look for a packet or protocol option of a specific size.                          |
+| `and / &&`           | `and` `&&` can be used to concatenate two different filters together. for example, src host AND port.                          |
+| `or`                 | `or` allows a match on either of the two conditions. It is not necessary for both to be fulfilled. This can be tricky. |
+| `not`                | `not` is a modifier that says everything except x. For example, not UDP.                                                                        |
 ```sh
 sudo tcpdump <filtering> [<options>]
 ```
@@ -69,23 +69,23 @@ sudo tcpdump -i (interface) proto (#)
 sudo tcpdump -i (interface) (protoname)
 ```
 
-## Spécification des indicateurs TCP
+## TCP Flag Specification
 
-1. Pour faire correspondre tous les paquets avec _`un seul indicateur TCP`_ spécifié :
+1. To match all packets with _`a single TCP flag`_ specified:
 
 ```
 tcp[tcpflags] == tcp-ack/tcp-syn/tcp-fin/tcp-push/tcp-urg/tcp-rst
 ```
 
-Par exemple, ceci affiche les paquets dont seul l'indicateur `PSH` est activé.
+For example, this displays packets with only the `PSH` flag set.
 
 ```
 tcp[tcpflags] == tcp-push
 ```
 
-2. Pour faire correspondre des paquets comportant _`plusieurs indicateurs TCP`_  spécifié :
+2. To match packets with _`multiple TCP flags`_ specified:
 
-- On doit convertir les indicateurs en une valeur décimale et utilisez ce nombre dans 
+- You must convert the flags to a decimal value and use that number in
 
 ```
 tcp[tcpflags] == x
@@ -93,14 +93,13 @@ tcp[tcpflags] == x
 
 ![](./Images/indicator.png)
 
-Par exemple, pour les paquets dont les indicateurs `PSH` et `ACK` sont définis, la valeur décimale devient `00011000 = 24`, et l'expression devient 
+For example, for packets with `PSH` and `ACK` flags set, the decimal value becomes `00011000 = 24`, and the expression becomes
 
 ```
 tcp [tcpflags] == 24
 ```
 
 ![](./Images/indicator-cmd.png)
-
 
 
 

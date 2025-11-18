@@ -1,10 +1,10 @@
 # Shell
 
-Nous pouvons forcer le serveur distant soit à nous envoyer un accès en ligne de commande ([Reverse shell](./Reverse%20shell.md)), soit à ouvrir un port sur le serveur auquel nous pouvons nous connecter afin d'exécuter d'autres commandes ([Bind shell](./Bind%20shell.md)).
+We can force the remote server either to send us command line access ([Reverse shell](./Reverse%20shell.md)), or to open a port on the server to which we can connect in order to execute other commands ([Bind shell](./Bind%20shell.md)).
 
 
 ## TTY
-Stabilisation de la coque
+Shell stabilization
 
 BASH
 

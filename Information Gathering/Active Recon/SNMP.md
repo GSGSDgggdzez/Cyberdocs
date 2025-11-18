@@ -1,14 +1,14 @@
 # SNMP
 
-Le SNMP (Simple Network Management Protocol) est un protocole de gestion de réseau qui permet de superviser et de gérer les équipements réseau, tels que les routeurs, les commutateurs, les serveurs, etc. 
+SNMP (Simple Network Management Protocol) is a network management protocol that allows monitoring and managing network equipment, such as routers, switches, servers, etc.
 
-Il permet de collecter des informations sur l'état et les performances du réseau, de configurer à distance les équipements, de détecter et de résoudre les problèmes de manière proactive.
+It allows collecting information on network status and performance, remotely configuring equipment, detecting and resolving problems proactively.
 
-**Les chaînes de communauté** par défaut du fabricant sont `manager`, `public`et `private`.
+The default manufacturer **community strings** are `manager`, `public` and `private`.
 
-Dans les versions SNMP 1 et 2c, l'accès est contrôlé à l'aide d'une chaîne de communauté en texte brut, et si nous connaissons le nom, nous pouvons y accéder.
+In SNMP versions 1 and 2c, access is controlled using a plaintext community string, and if we know the name, we can access it.
 
-Le serveur SMTP écoute sur le port 161 par défaut.
+The SMTP server listens on port 161 by default.
 
 Enumerate which `community` is enabled on the server
 
@@ -36,7 +36,7 @@ braa <community string>@<FQDN/IP>:.1.*
 braa <community string>@<FQDN/IP>:.1.3.6.*
 ```
 
-Afficher les programmes installer ou disponible sur la machine
+Display installed or available programs on the machine
 
 ```sh
 snmpwalk -v 2c -c <community string> <FQDN/IP> hrSWInstalledName
@@ -72,7 +72,7 @@ Enumerating installed software
 snmpwalk -c public -v1 <FQDN/IP> 1.3.6.1.2.1.25.3.1.2
 ```
 
-Rechercher ceci
+Search for this
 
 ```sh
 snmpwalk -v 2c -c public 10.129.42.253 1.3.6.1.2.1.1.5.0

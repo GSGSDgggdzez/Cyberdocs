@@ -1,6 +1,6 @@
 # SMB
 
-Le SMB (Server Message Block) écoute par défaut sur les ports `139,445`
+SMB (Server Message Block) listens by default on ports `139,445`
 
 ```sh
 nbtscan -r 192.168.45.0/24
@@ -56,15 +56,15 @@ enum4linux-ng.py <FQDN/IP> -A
 
 **Samba Symlink Directory Traversal.** allow attacker to create a symbolic link to the `root /` partition from writeable share ultimately allowing for read access to the entire file systeme outsite of the share directory.
 
-Lors que un partage a les permissions d'ecriture. et que le parametre `widelinks` definir sur `yes` soit present dans le fichier `smb.conf`
+When a share has write permissions and the `widelinks` parameter set to `yes` is present in the `smb.conf` file
 
 ```sh
 use auxiliary/admin/smb/samba_symlink_traversal
 ```
 
-Apres  cela acceder au partge avec smbclient et on poura voir un nouveau dossier cree
+After that access the share with smbclient and we will be able to see a newly created folder
 
-onfiguration for Windows pivot
+Configuration for Windows pivot
 
 ```sh
 sudo nano /etc/samba/smb.conf

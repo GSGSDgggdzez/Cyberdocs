@@ -2,14 +2,14 @@
 
 ## Basic Scan
 
-Analyse réseau ICMP (Sweeping)
+ICMP network scan (Sweeping)
 
 ```sh
 nmap -sn 192.168.45.0/24
 #nmap -sn 192.168.45.1-254
 ```
 
-Analyses TCP (**`scan connecter`**) **`SYN | SYN-ACK | ACK`**
+TCP scan (**`connect scan`**) **`SYN | SYN-ACK | ACK`**
 
 ```sh
 nmap <IP> -sT
@@ -19,7 +19,7 @@ nmap <IP> -sT
 nc -v -z -w 1 <FQDN/IP> 80
 ```
 
-Analyses UDP (**`sans état`**)
+UDP scan (**`stateless`**)
 
 ```sh
 sudo nmap <IP> -sU --top-ports 20 
@@ -30,7 +30,7 @@ sudo nmap <IP> -sU -F -v --top-ports 20
 nc -u -v -z -w 1 <IP> 80
 ```
 
-SYN Scan (**`scan furtif`**) peut contourner les anciens IDS **`SYN | SYN-ACK`**
+SYN Scan (**`stealth scan`**) can bypass older IDS **`SYN | SYN-ACK`**
 
 ```sh
 sudo nmap <IP> -sS
@@ -38,28 +38,28 @@ sudo nmap <IP> -sS
 
 ## Advanced Scan
 
-D'autre types d'analyse furtifs utiliser pour contourner certaine pare-feu.
+Other types of stealth scans used to bypass certain firewalls.
 
-Analyse TCP NULL **`<none>`**
+TCP NULL Scan **`<none>`**
 
 ```sh
 sudo nmap <IP> -sN
 ```
 
-Analyse TCP FIN **`FIN`**
+TCP FIN Scan **`FIN`**
 
 ```sh
 sudo nmap <IP> -sF
 ```
 
-Analyse de Noël TCP ou Xmas **`FIN, PSH, URG`**
+TCP Xmas Scan **`FIN, PSH, URG`**
 
 ```sh
 sudo nmap <IP> -sX
 ```
 
 TCP Maimon Scan **`FIN, ACK | RST`**
-Ce type d'analyse n'est pas la première analyse que l'on choisirait pour découvrir un système et il fonctionnera pas sur la plupart des cibles rencontrées dans les réseaux modernes
+This type of scan is not the first scan you would choose to discover a system and will not work on most targets encountered in modern networks
 
 ```sh
 sudo nmap <IP> -sM
@@ -67,24 +67,24 @@ sudo nmap <IP> -sM
 
 ## Identify Firewall rules
 
-Les analyses `ACK` et `Window` exposent les règles du pare-feu, et non les services.
+`ACK` and `Window` scans expose firewall rules, not services.
 
-Analyse TCP ACK **`ACK | RST`**
-Ce type d'analyse peut être utile s'il existe un pare-feu devant la cible et est plus adapté pour découvrir les ensembles de règles et la configuration du pare-feu.
-Le resultat de ce scan affiche les ports qui ne sont pas bloquer par le pare-feu
+TCP ACK Scan **`ACK | RST`**
+This type of scan can be useful if there is a firewall in front of the target and is better suited for discovering firewall rule sets and configuration.
+The result of this scan shows ports that are not blocked by the firewall
 
 ```sh
 sudo nmap <IP> -sA
 ```
 
-Analyse Window **`ACK | RST`**
-Le resultat de ce scan affiche les ports qui ne sont pas bloquer par le pare-feu. Les ports peuvent afficher `closed` mais elles sont en realiter ouvert. 
+Window Scan **`ACK | RST`**
+The result of this scan shows ports that are not blocked by the firewall. Ports may display `closed` but they are actually open.
 
 ```sh
 sudo nmap <IP> -sW
 ```
 
-Analyse personnalisée
+Custom scan
 
 ```sh
 sudo nmap --scanflags {URG,ACK,PSH,RST,SYN,FIN}
@@ -92,24 +92,24 @@ sudo nmap --scanflags {URG,ACK,PSH,RST,SYN,FIN}
 
 ## Spoofing
 
-L'usurpation de l'adresse IP source peut être une excellente approche pour effectuer une analyse furtive. Cependant, ne fonctionnera que si vous pouvez surveiller le trafic.
+Spoofing the source IP address can be an excellent approach for performing a stealth scan. However, it will only work if you can monitor the traffic.
 
-Spoofing IP Source
-Cette analyse sera inutile si le système attaquant ne peut pas surveiller le réseau pour obtenir des réponses.
+IP Source Spoofing
+This scan will be useless if the attacking system cannot monitor the network to obtain responses.
 
 ```sh
 nmap -e NET_INTERFACE -Pn -S SPOOFED_IP MACHINE_IP
 ```
 
-Spoofing MAC Source
-Cette usurpation d'adresse n'est possible que si l'attaquant et la machine cible se trouvent sur le même réseau Ethernet (802.3) ou le même réseau Wi-Fi (802.11).
+MAC Source Spoofing
+This address spoofing is only possible if the attacker and target machine are on the same Ethernet network (802.3) or the same Wi-Fi network (802.11).
 
 ```sh
 nmap -e NET_INTERFACE -Pn --spoof-mac SPOOFED_MAC MACHINE_IP
 ```
 
-Decoys (Leurres)
-Faire en sorte que l'analyse semble provenir de plusieurs adresses IP afin que l'adresse IP de l'attaquant soit perdue parmi elles:
+Decoys
+Make the scan appear to come from multiple IP addresses so the attacker's IP address is lost among them:
 
 ```sh
 nmap -D 10.10.0.1,10.10.0.2,RND,RND,ME MACHINE_IP
@@ -117,21 +117,21 @@ nmap -D 10.10.0.1,10.10.0.2,RND,RND,ME MACHINE_IP
 
 ## Firewall evasion 
 
-Il existe une variété d'autres commutateurs utiles pour contourner le pare-feu disponible [ici](https://nmap.org/book/man-bypass-firewalls-ids.html) 
+There are a variety of other useful switches for bypassing firewalls available [here](https://nmap.org/book/man-bypass-firewalls-ids.html) 
 
-- `-f`, `-ff` utilisé pour fragmenter les paquets (les diviser en morceaux plus petits), ce qui rend moins probable que les paquets soient détectés par un pare-feu ou un IDS.
+- `-f`, `-ff` used to fragment packets (split them into smaller pieces), making it less likely that packets will be detected by a firewall or IDS.
 
-- `--mtu <number>` agit comme `-f` mais offre plus de contrôle sur la taille des paquets. Accepte une taille maximale d'unité de transmission à utiliser pour les paquets envoyés qui doit être un multiple de 8.
+- `--mtu <number>` acts like `-f` but provides more control over packet size. Accepts a maximum transmission unit size to use for sent packets which must be a multiple of 8.
 
-- `--scan-delay <time>ms` utilisé pour ajouter un délai entre les paquets envoyés. Ceci est très utile si le réseau est instable, mais également pour éviter les déclencheurs de pare-feu/ IDS temporels qui pourraient être en place.
+- `--scan-delay <time>ms` used to add a delay between sent packets. This is very useful if the network is unstable, but also to avoid time-based firewall/IDS triggers that might be in place.
 
-- `--badsum` ceci est utilisé pour générer une somme de contrôle invalide pour les paquets. Toute véritable pile TCP /IP abandonnerait ce paquet, cependant, les pare-feu peuvent potentiellement répondre automatiquement, sans prendre la peine de vérifier la somme de contrôle du paquet. A ce titre, ce commutateur peut être utilisé pour déterminer la présence d'un pare-feu/ IDS .
+- `--badsum` this is used to generate an invalid checksum for packets. Any real TCP/IP stack would drop this packet, however, firewalls may potentially respond automatically, without bothering to verify the packet's checksum. As such, this switch can be used to determine the presence of a firewall/IDS.
 
-- `--data-length NUM` augmenter la taille de vos paquets pour les rendre inoffensifs
+- `--data-length NUM` increase the size of your packets to make them appear harmless
 
 ## Idle scanning
 
-L'analyse inactive ou analyse zombie, nécessite un système inactif connecté au réseau avec lequel vous pouvez communiquer
+Idle or zombie scanning, requires an idle system connected to the network that you can communicate with
 
 > The Idle scan is a stealth technique that involves the presence of a zombie (host that is not sending or receiving any packets thus) in the target network.
 
@@ -148,7 +148,7 @@ use auxiliary/scanner/ip/ipidseq
 
 if **`IP ID Sequence Generation: Incremental`**, this a good zombie
 
-Analyse zombie
+Zombie scan
 
 ```sh
 sudo nmap -sI ZOMBIE_IP MACHINE_IP
@@ -162,19 +162,19 @@ We are able to scan the target host without sending a single packet from our ori
 
 ## NSE
 
-Le NSE est particulièrement utile pour la reconnaissance, l'étendue de la bibliothèque de scripts. Certaines catégories utiles incluent :
+The NSE is particularly useful for reconnaissance, given the scope of the script library. Some useful categories include:
 
-- `safe`:- N'affectera pas la cible
-- `intrusive`:- Pas sûr : susceptible d'affecter la cible  
-- `vuln`:- Rechercher les vulnérabilités
-- `exploit`:- Tentative d'exploiter une vulnérabilité
-- `auth`:- Tentative de contourner l'authentification pour les services en cours d'exécution 
-- `brute`:- Tentative de force brute des informations d'identification pour l'exécution des services
-- `discovery`:- Tentative d'interroger les services en cours d'exécution pour obtenir des informations supplémentaires sur le réseau 
+- `safe`:- Will not affect the target
+- `intrusive`:- Not safe: likely to affect the target  
+- `vuln`:- Scan for vulnerabilities
+- `exploit`:- Attempt to exploit a vulnerability
+- `auth`:- Attempt to bypass authentication for running services 
+- `brute`:- Attempt to brute force credentials for running services
+- `discovery`:- Attempt to query running services for additional information about the network 
 
-Une liste plus exhaustive peut être trouvée [ici](https://nmap.org/book/nse-usage.html) 
+A more exhaustive list can be found [here](https://nmap.org/book/nse-usage.html) 
 
-Pour exécuter un script spécifique :
+To run a specific script:
 
 ```sh
 sudo nmap <FQDN/IP> --script=<script-name>
@@ -182,7 +182,7 @@ sudo nmap <FQDN/IP> --script=<script-name>,<script-name>
 #sudo nmap 192.168.45.130 --script=vuln
 ```
 
-Certains scripts nécessitent des arguments
+Some scripts require arguments
 
 ```sh
 nmap -p 80 --script <script-name> --script-args <script-name>.<arg-name>='<value>'
@@ -190,9 +190,9 @@ nmap -p 80 --script <script-name> --script-args <script-name>.<arg-name>='<value
 #nmap -p 80 --script http-put --script-args http-put.url='/dav/shell.php',http-put.file='./shell.php'
 ```
 
-Une liste complète des scripts et de leurs arguments correspondants (ainsi que des exemples de cas d'utilisation) peuvent être trouvés [ici](https://nmap.org/nsedoc/) 
+A complete list of scripts and their corresponding arguments (along with use case examples) can be found [here](https://nmap.org/nsedoc/) 
 
-Afficher le menu d'aide d'un script particulier
+Display help menu for a particular script
 
 ```sh
 nmap --script-help <script-name>

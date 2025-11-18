@@ -1,103 +1,103 @@
 # Cyber Kill Chain®
-Conçu pour l’identification et la prévention des intrusions sur le réseau. 
+Designed for the identification and prevention of network intrusions. 
 
 ![](Images/cykillchain.png)
 
 ## Reconnaissance
-C'est la phase de planification pour les adversaires qui consiste à découvrir et à collecter des informations sur le système et la victime. En utilisent des sites de médias sociaux tels que LinkedIn, Facebook, Twitter et Instagram pour collecter des informations sur une victime spécifique qu'il souhaiterait attaquer ou sur l'entreprise.
+This is the planning phase for adversaries, which involves discovering and collecting information about the system and the victim. Using social media sites such as LinkedIn, Facebook, Twitter and Instagram to gather information about a specific target they would like to attack or about the company.
 
-**OSINT** (Open-Source Intelligence) est la première étape qu’un attaquant doit accomplir pour mener à bien les phases suivantes d’une attaque en collectant toutes les informations disponibles sur l'entreprise et ses employés , telles que la taille de l'entreprise, les adresses e-mail et les numéros de téléphone, provenant de ressources accessibles au public ,  afin de déterminer la meilleure cible pour  l'attaque.
+**OSINT** (Open-Source Intelligence) is the first step an attacker must complete to successfully carry out subsequent attack phases by collecting all available information about the company and its employees, such as company size, email addresses and phone numbers, from publicly accessible resources, in order to determine the best target for the attack.
 
-L'attaquant disposera d'un vaste arsenal d'outils à sa disposition à des fins de reconnaissance:
+The attacker will have a vast arsenal of tools at their disposal for reconnaissance purposes:
 
-- [theHarvester](https://github.com/laramies/theHarvester)  - outre la collecte d'e-mails, cet outil est également capable de collecter des noms, des sous-domaines, des adresses IP et des URL à l'aide de plusieurs sources de données publiques.
- 
-- [Hunter.io](https://hunter.io/)  - il s'agit d'un outil de recherche d'e-mails qui vous permettra d'obtenir les informations de contact associées au domaine.
+- [theHarvester](https://github.com/laramies/theHarvester) - in addition to collecting emails, this tool is also capable of collecting names, subdomains, IP addresses and URLs using multiple public data sources.
+ 
+- [Hunter.io](https://hunter.io/) - this is an email search tool that will allow you to obtain contact information associated with the domain.
 
-- [OSINT Framework](https://osintframework.com/)  - fournit la collection d'outils OSINT basés sur diverses catégories.
+- [OSINT Framework](https://osintframework.com/) - provides the collection of OSINT tools based on various categories.
 
 ## Weaponization
-Après une étape de reconnaissance réussie, l'attaquants travaillerait à la fabrication d'une "arme de destruction" comme : `Un Malware`, `Un Exploit`, `Une charge utile`
+After a successful reconnaissance step, attackers would work on creating a "weapon of destruction" such as: `Malware`, `An Exploit`, `A Payload`
 
 
-- **Un Malware**  est un  programme ou un logiciel conçu pour endommager, perturber ou obtenir un accès non autorisé à un ordinateur.
+- **Malware** is a program or software designed to damage, disrupt or gain unauthorized access to a computer.
 
-- **Un Exploit** est un programme ou un code qui profite de la vulnérabilité ou d'une faille de l'application ou du système.
+- **An Exploit** is a program or code that takes advantage of a vulnerability or flaw in an application or system.
 
-- **Une charge utile** est un code malveillant que l'attaquant exécute sur le système.
+- **A Payload** is malicious code that the attacker executes on the system.
 
-La plupart des attaquants utilisent généralement des outils automatisés pour générer le malware ou se réfèrent au [DarkWeb](https://www.kaspersky.com/resource-center/threats/deep-web) pour acheter le malware.
+Most attackers typically use automated tools to generate malware or refer to the [DarkWeb](https://www.kaspersky.com/resource-center/threats/deep-web) to purchase malware.
 
-Des acteurs plus sophistiqués ou des APT (Advanced Persistent Threat Groups) écriraient leurs malwares personnalisés pour rendre l'échantillon de logiciel malveillant unique et échapper à la détection sur la cible.
+More sophisticated actors or APTs (Advanced Persistent Threat Groups) would write their own custom malware to make the malware sample unique and evade detection on the target.
 
-Dans la phase de militarisation, l’attaquant :
+In the weaponization phase, the attacker:
 
-- Créez un document Microsoft Office infecté contenant une [macro malveillante](https://www.trustedsec.com/blog/intro-to-macros-and-vba-for-script-kiddies/)  ou des scripts VBA (Visual Basic for Applications).
+- Creates an infected Microsoft Office document containing a [malicious macro](https://www.trustedsec.com/blog/intro-to-macros-and-vba-for-script-kiddies/) or VBA (Visual Basic for Applications) scripts.
 
-- Un attaquant peut créer une charge utile malveillante ou un ver très sophistiqué, l'implanter sur les clés USB, puis les distribuer en public. 
- 
-- Un attaquant choisirait les techniques de commande et de contrôle (C2) pour exécuter les commandes sur la machine de la victime ou fournirait davantage de charges utiles. 
+- An attacker can create a malicious payload or a very sophisticated worm, implant it on USB drives, then distribute them publicly.
+ 
+- An attacker would choose Command and Control (C2) techniques to execute commands on the victim's machine or deliver additional payloads.
 
-Vous pouvez en savoir plus sur les techniques C2 sur [MITRE](https://attack.mitre.org/tactics/TA0011/) [ATT&CK](https://attack.mitre.org/tactics/TA0011/) .[](https://attack.mitre.org/tactics/TA0011/)
+You can learn more about C2 techniques on [MITRE](https://attack.mitre.org/tactics/TA0011/) [ATT&CK](https://attack.mitre.org/tactics/TA0011/).[](https://attack.mitre.org/tactics/TA0011/)
 
 
 ## Delivery
-La phase de livraison est celle où l'attaquant décide de choisir la méthode de transmission du malware.
+The delivery phase is where the attacker decides to choose the method of transmitting the malware.
 
-Il a le choix entre de nombreuses options : 
-- E-mail de phishing
-- Distribuer des clés USB infectées
-- Attaque de point d’eau (Watering hole attack) : conçue pour cibler un groupe spécifique de personnes en compromettant le site Web qu'ils visitent habituellement, puis en les redirigeant vers le site Web malveillant choisi par l'attaquant.
+They have many options to choose from:
+- Phishing email
+- Distributing infected USB drives
+- Watering hole attack: designed to target a specific group of people by compromising the website they usually visit, then redirecting them to the malicious website chosen by the attacker.
 
 ## Exploitation
-Après avoir accédé au système, l'acteur malveillant pourrait exploiter les vulnérabilités du logiciel, du système ou du serveur pour élever ses privilèges ou se déplacer latéralement à travers le réseau.
+After gaining access to the system, the malicious actor could exploit software, system, or server vulnerabilities to elevate their privileges or move laterally across the network.
 
-Voici des exemples de la manière dont un attaquant procède à l'exploitation :
+Here are examples of how an attacker proceeds with exploitation:
 
-- La victime déclenche l'exploit en ouvrant la pièce jointe de l'e-mail ou en cliquant sur un lien malveillant.
-- Utilisation d'un exploit zero-day.
-- Exploitez les vulnérabilités logicielles, matérielles ou même humaines. 
-- Un attaquant déclenche l'exploit pour les vulnérabilités basées sur le serveur.
+- The victim triggers the exploit by opening the email attachment or clicking on a malicious link.
+- Using a zero-day exploit.
+- Exploiting software, hardware or even human vulnerabilities.
+- An attacker triggers the exploit for server-based vulnerabilities.
 
 ## Installation
-Une fois que l'attaquant a accès au système, il voudra y accéder à nouveau s'il perd la connexion ou s'il est détecté et que l'accès initial est supprimé, ou si le système est ultérieurement corrigé.
+Once the attacker has gained access to the system, they would want to access it again if they lose the connection or if they are detected and the initial access is removed, or if the system is subsequently patched.
 
-C'est alors que l'attaquant doit installer une **[porte dérobée persistante](https://www.offensive-security.com/metasploit-unleashed/persistent-backdoors/)** pour le permettre d'accéder au système qu'il a compromis dans le passé.
+This is when the attacker must install a **[persistent backdoor](https://www.offensive-security.com/metasploit-unleashed/persistent-backdoors/)** to allow them to access the system they compromised in the past.
 
-Au cours de cette phase, l'attaquant peut également utiliser la technique **[Timestomping](https://attack.mitre.org/techniques/T1070/006/)** pour éviter d'être détecté par l'enquêteur médico-légal et également pour faire apparaître le logiciel malveillant comme faisant partie d'un programme légitime. 
+During this phase, the attacker can also use the **[Timestomping](https://attack.mitre.org/techniques/T1070/006/)** technique to avoid being detected by the forensic investigator and also to make the malware appear as part of a legitimate program.
 
-> La technique `Timestomping` permet à un attaquant de modifier les horodatages du fichier, y compris les heures de modification, d'accès, de création et de modification.
+> The `Timestomping` technique allows an attacker to modify file timestamps, including modification, access, creation and change times.
 
 
 ## Command & Control
-Après avoir persisté et exécuté le malware sur la machine de la victime, l'attaquant ouvre le canal C2 via le malware pour contrôler et manipuler à distance la victime.
+After persisting and executing malware on the victim's machine, the attacker opens the C2 channel via the malware to remotely control and manipulate the victim.
 
-Le point de terminaison compromis communiquerait avec un serveur externe configuré par un attaquant pour établir un canal de commande et de contrôle. Après avoir établi la connexion, l'attaquant a le contrôle total de la machine de la victime. 
+The compromised endpoint would communicate with an external server configured by an attacker to establish a command and control channel. After establishing the connection, the attacker has full control of the victim's machine.
 
-> Jusqu'à récemment, IRC (Internet Relay Chat) était le canal C2 traditionnel utilisé par les attaquants. Ce n'est plus le cas, car les solutions de sécurité modernes peuvent facilement détecter le trafic IRC malveillant . 
+> Until recently, IRC (Internet Relay Chat) was the traditional C2 channel used by attackers. This is no longer the case, as modern security solutions can easily detect malicious IRC traffic.
 
-Les canaux C2 les plus couramment utilisés par les adversaires de nos jours :
+The most commonly used C2 channels by adversaries today:
 
-- Les protocoles HTTP/HTTPS: ce type de balisage mélange le trafic malveillant avec le trafic légitime et peut aider l'attaquant à échapper aux pare-feu.    
+- HTTP/HTTPS protocols: this type of beaconing mixes malicious traffic with legitimate traffic and can help the attacker evade firewalls.
     
-- DNS: La machine infectée envoie des requêtes DNS constantes au serveur DNS appartenant à un attaquant. Ce type de communication C2 est également connu sous le nom de **DNS Tunneling.**
+- DNS: The infected machine sends constant DNS queries to a DNS server owned by an attacker. This type of C2 communication is also known as **DNS Tunneling.**
 
-> Il est important de noter qu'un adversaire ou un autre hôte compromis peut être propriétaire de l' infrastructure C2 .
+> It is important to note that an adversary or another compromised host may own the C2 infrastructure.
 
-## Actions on Objectives (Exfiltration) 
+## Actions on Objectives (Exfiltration) 
 
-Après avoir traversé 06 phases l'attaquant peut enfin atteindre ses objectifs, ce qui signifie agir sur les objectifs initiaux. 
+After going through 06 phases, the attacker can finally achieve their objectives, which means acting on the initial objectives.
 
-- Collectez les informations d’identification des utilisateurs.
+- Collect user credentials.
 
-- Effectuer une élévation de privilèges
+- Perform privilege escalation
 
-- Reconnaissance interne
+- Internal reconnaissance
 
-- Déplacement latéral dans l'environnement de l'entreprise.
+- Lateral movement in the corporate environment.
 
-- Collectez et exfiltrez les données sensibles.
+- Collect and exfiltrate sensitive data.
 
-- Suppression des sauvegardes et des clichés instantanés. 
+- Deletion of backups and snapshots.
 
-- Écraser ou corrompre les données.
+- Overwriting or corrupting data.

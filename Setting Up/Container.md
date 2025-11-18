@@ -1,10 +1,10 @@
 # Container
 
-L'utilisation de conteneurs garantit que les ressources informatiques sont strictement séparées les unes des autres.
+Using containers ensures that computing resources are strictly separated from each other.
 
 ## Docker
 
-Tout système sur lequel Docker Engine est installé peut utiliser des conteneurs Docker.
+Any system with Docker Engine installed can use Docker containers.
 
 Docker on Linux
 
@@ -22,7 +22,7 @@ C:\> choco install docker-desktop
 
 **Vagrant**
 
-Vagrant est un outil permettant de créer, configurer et gérer des machines virtuelles ou des environnements de machines virtuelles.
+Vagrant is a tool for creating, configuring, and managing virtual machines or virtual machine environments.
 
 Vagrant on Linux
 

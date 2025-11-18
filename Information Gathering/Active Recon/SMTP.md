@@ -1,18 +1,18 @@
 # SMTP
 
-Le SMTP (Simple Mail Transfer Protocol ) est utilisé pour communiquer avec un serveur de messagerie pour envoyé des e-mails. il écoute sur le port `25` par défaut.
+SMTP (Simple Mail Transfer Protocol) is used to communicate with a mail server for sending emails. It listens on port `25` by default.
 
-SMTP utilise du texte clair, où toutes les commandes sont envoyées sans cryptage
+SMTP uses plain text, where all commands are sent without encryption
 
-Nous utiliserons `telnet` pour nous connecter à un serveur SMTP et agir comme un client de messagerie
+We will use `telnet` to connect to an SMTP server and act as a mail client
 
-Une fois connectés, nous émettons:
-- `helo hostname`puis commençons à taper notre email.
-- Après `helo`, nous émettons `mail from:`, `rcpt to:`pour indiquer l'expéditeur et le destinataire.
-- Lorsque nous envoyons notre message électronique, nous émettons la commande `data`et tapons notre message. 
-- Nous émettons `<CR><LF>.<CR><LF>`(ou `Enter . Enter`). 
+Once connected, we issue:
+- `helo hostname` then begin typing our email.
+- After `helo`, we issue `mail from:`, `rcpt to:` to indicate the sender and recipient.
+- When we send our email, we issue the `data` command and type our message. 
+- We issue `<CR><LF>.<CR><LF>` (or `Enter . Enter`). 
 
-Le serveur SMTP met désormais le message en file d'attente.
+The SMTP server now queues the message.
 
 
 ```sh
@@ -55,7 +55,7 @@ Enumerate which options `verbs` are enabled on the mail server
 nmap --script=smtp-commands -p 25 <IP>
 ```
 
-Enumerer les utilisateur manuellement
+Enumerate users manually
 
 ```sh
 RCPT TO: <user@domain.com>
@@ -63,7 +63,7 @@ EXPN <username>
 VRFY <username.
 ```
 
-Enumaration users
+User enumeration
 
 ```sh
 smtp-user-enum -M VRFY -U usernames.txt -t 192.168.45.130
@@ -72,4 +72,3 @@ smtp-user-enum -M VRFY -U usernames.txt -t 192.168.45.130
 ```sh
 use auxiliary/scanner/smtp/smtp_enum
 ```
-

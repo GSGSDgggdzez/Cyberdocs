@@ -1,26 +1,25 @@
 # Malware Information Sharing Platform
 
-[MISP (Malware Information Sharing Platform)](https://www.misp-project.org/)  est une plateforme de partage d'informations sur les menaces qui facilite la collecte, le stockage et la distribution de renseignements sur les menaces et IOC liés aux logiciels malveillants, aux cyberattaques.
+[MISP (Malware Information Sharing Platform)](https://www.misp-project.org/) is a threat information sharing platform that facilitates the collection, storage and distribution of threat intelligence and IOCs related to malware and cyberattacks.
 
-MISP est utile pour les cas d’utilisation suivants :
+MISP is useful for the following use cases:
 
-- Partage d'indicateurs de malwares
+- Sharing malware indicators
 
-- Recherche, validation et utilisation d'indicateurs dans l'enquête sur les failles de sécurité.
+- Research, validation and use of indicators in security breach investigations.
 
-- Collecte d’informations sur les groupes adverses et leurs capacités.
+- Collecting information on adversary groups and their capabilities.
 
-- Utiliser des indicateurs pour soutenir les enquêtes judiciaires.
+- Using indicators to support judicial investigations.
 
-- Recherche de nouvelles menaces, de leur probabilité et de leur occurrence.
+- Research on new threats, their probability and occurrence.
 
-- Partage d'indicateurs financiers pour détecter les fraudes financières.
+- Sharing financial indicators to detect financial fraud.
 
 
-### Ressources
+### Resources
 
-- [DMU Livre](https://www.circl.lu/doc/misp/)
-- [DMU GitHub](https://github.com/MISP/)
-- [CIRCL DMU 1 Module de formation](https://www.youtube.com/watch?v=aM7czPsQyaI)
-- [CIRCL DMU Module 2 de formation](https://www.youtube.com/watch?v=Jqp8CVHtNVk)
-
+- [MISP Book](https://www.circl.lu/doc/misp/)
+- [MISP GitHub](https://github.com/MISP/)
+- [CIRCL MISP Training Module 1](https://www.youtube.com/watch?v=aM7czPsQyaI)
+- [CIRCL MISP Training Module 2](https://www.youtube.com/watch?v=Jqp8CVHtNVk)

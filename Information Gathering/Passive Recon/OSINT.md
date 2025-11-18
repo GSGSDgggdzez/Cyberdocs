@@ -13,7 +13,7 @@ Use tools like to automate process
 - https://github.com/initstring/linkedin2username
 
 
-Rechercher par GPS
+Search by GPS
 
 ```sh
 # 51 deg 30' 51.90" N, 0 deg 5' 38.73" W

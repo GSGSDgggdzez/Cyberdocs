@@ -2,7 +2,7 @@
 
 **Bloodhound-Python**
 
-Récupérer du butin a distance
+Collect loot remotely
 
 ```sh
 bloodhound-python -c All -u Administrator -p 'Password' -d CONTROLLER.local -ns 10.10.x.x
@@ -12,7 +12,7 @@ bloodhound-python -c All -u michael -p 'NewPassword123' -dc administrator.htb -d
 
 **SharpHound**
 
-Récupérer du butin en local
+Collect loot locally
 
 ```sh
 . .\SharpHound.ps1
@@ -24,4 +24,3 @@ Run the SharpHound C# ingestor
 ```sh
 .\SharpHound.exe -c all --zipfilename CONTROLLER_bloodhound
 ```
-

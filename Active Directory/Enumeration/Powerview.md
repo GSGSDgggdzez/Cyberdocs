@@ -1,32 +1,31 @@
 ## PowerView
-[Aide-mémoire](https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993)
+[Cheat Sheet](https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993)
 
-
-Démarrez PowerView
+Start PowerView
 
 ```sh
 . .\PowerView.ps1
 ```
 
-Énumérer les utilisateurs du domaine :
+Enumerate domain users:
 
 ```sh
 Get-NetUser | select cn
 ```
 
-Énumérer les groupes de domaines : 
+Enumerate domain groups:
 
 ```sh
 Get-NetGroup -GroupName *admin*
 ```
 
-Afficher les dossiers partager
+Display shared folders
 
 ```sh
 Invoke-ShareFinder
 ```
 
-Affiche les systèmes d’exploitation qui fonctionne à l’intérieur du réseau
+Display operating systems running inside the network
 
 ```sh
 Get-NetComputer -fulldata | select operatingsystem

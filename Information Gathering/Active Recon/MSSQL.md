@@ -6,7 +6,7 @@ Log in to the MSSQL server using Windows authentication.
 mssqlclient.py <user>@<FQDN/IP> -windows-auth
 ```
 
-Activer `xp_cmdshell`
+Enable `xp_cmdshell`
 
 ```sh
 EXECUTE sp_configure 'show advanced options',1

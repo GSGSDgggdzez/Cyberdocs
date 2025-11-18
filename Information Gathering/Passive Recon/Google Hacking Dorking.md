@@ -33,40 +33,39 @@ vulnerability
  site:example.com
 ```
 
-Trouver des résultats avec une expression de recherche exacte
+Find results with an exact search phrase
 
 ```c
 "search phrase"
 ```
 
-Rechercher des fichiers de type `PDF` lié à un certain terme.
+Search for files of type `PDF` related to a certain term.
 
 ```c
-OSINT filetype:pdf
+OSINT filetype:pdf
 ```
 
-Limitez les résultats de recherche à un site spécifique
+Limit search results to a specific site
 
 ```c
 salary site:blog.tryhackme.com
 ```
 
-Exclure un site spécifique des résultats
+Exclude a specific site from results
 
 ```c
 pentest -site:example.com
 ```
 
-Recherchez des pages avec un terme spécifique dans le titre de la page.
+Search for pages with a specific term in the page title.
 
 ```c
 walkthrough intitle:TryHackMe
 ```
 
-Rechercher dans un titre
+Search in a title
 
 ```c
 intitle:"index of" "parent directory"
 ```
-
 

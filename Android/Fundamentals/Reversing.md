@@ -1,61 +1,61 @@
 # Reversing
 
-Extraire l'apk de l'appareil et obtenir le code source.
+Extract the apk from the device and get the source code.
 
-## Initialisation
+## Initialization
 
-Visualiser les appareils connecter 
+View connected devices
 
 ```sh
 adb devices
 ```
 
-Interagire avec l'appareil
+Interact with the device
 
 ```sh
 adb shell
 ```
 
-## Extraire apk a analyser
+## Extract apk to analyze
 
-Pour cela, vous devez avoir installé l'application sur votre appareil et connaître le nom du package.
+For this, you need to have installed the application on your device and know the package name.
 
-Liste les applications installer. 
-Cette commande imprime le chemin d'accès à l'APK du fichier donné
+List installed applications.
+This command prints the path to the APK of the given file
 
 ```sh
 adb shell pm list packages
 ```
 
-Recuperer le path d'une application (le chemin vers le fichier APK)
+Get the path of an application (the path to the APK file)
 
 ```sh
 adb shell pm path <PACKAGE_NAME>
 ```
 
-Telecharger l'APK
+Download the APK
 
 ```sh
 adb pull <PACKAGE_NAME>.apk NEW_APP_NAME.apk
 ```
 
-## Obtenir le code source
+## Get the source code
 
-Permet de simplement charger un APK et de regarder son code source Java. En fait Jadx décompile l'APK en smali, puis reconvertit le smali en Java.
+Allows you to simply load an APK and view its Java source code. In fact Jadx decompiles the APK to smali, then converts the smali back to Java.
 
 ```sh
 jadx -d destination-folder path-apkfile.apk
-# ou
+# or
 jadx -d destination-folder path-dexfile.dex
 ```
 
-Convertir un APK en fichier JAR. Puis ouvrire le fichier `JAR` avec `JD-GUI` pour avoir le code Java.
+Convert an APK to a JAR file. Then open the `JAR` file with `JD-GUI` to get the Java code.
 
 ```sh
 d2j-dex2jar file.apk 
 ```
 
-Récupère le code source en smali.
+Get the source code in smali.
 
 ```sh
 apktool d file.apk

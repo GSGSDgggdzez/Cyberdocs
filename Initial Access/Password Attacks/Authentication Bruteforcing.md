@@ -22,7 +22,7 @@ medusa -h <IP> -u user -P wordlist.lst -M <module>
 ```
 
 HTTP htaccess Attack with medusa (Basic Authentication)
-Les pages avec les popus JS pour l'authentification qui utilise une protection `.htaccess`
+Pages with JS popups for authentication that use `.htaccess` protection
 
 ```sh
 

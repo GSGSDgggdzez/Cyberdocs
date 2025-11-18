@@ -2,19 +2,19 @@
 
 ![](Images/ukc.png)
 
-L'UKC déclare qu'une attaque comporte 18 phases : de la reconnaissance à l'exfiltration de données et à la compréhension des motivations de l'attaquant.
+The UKC states that an attack has 18 phases: from reconnaissance to data exfiltration and understanding the attacker's motivations.
 
-Certaine phase sont tres similaire au [Cyber Kill Chain](Cyber%20Kill%20Chain.md)
+Some phases are very similar to the [Cyber Kill Chain](Cyber%20Kill%20Chain.md)
 
-| **Avantages du cadre Unified Kill Chain ( UKC )**                                                                                          |
+| **Advantages of the Unified Kill Chain (UKC) Framework**                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Moderne (sorti en 2017, mis à jour en 2022).                                                        |
-| L' UKC est extrêmement détaillé (18 phases).                                                      |
-| L'UKC couvre l'intégralité d'une attaque, depuis la reconnaissance jusqu'à l'exploitation et la post-exploitation, et inclut l'identification de la motivation de l'attaquant.                                                        |
-| L’ UKC met en avant un scénario d’attaque bien plus réaliste. Diverses étapes se reproduiront souvent. Par exemple, après avoir exploité une machine, un attaquant va entamer une reconnaissance pour faire pivoter un autre système. |
+| Modern (released in 2017, updated in 2022).                                                        |
+| The UKC is extremely detailed (18 phases).                                                      |
+| The UKC covers the entirety of an attack, from reconnaissance to exploitation and post-exploitation, and includes identifying the attacker's motivation.                                                        |
+| The UKC highlights a much more realistic attack scenario. Various stages will often repeat. For example, after exploiting a machine, an attacker will begin reconnaissance to pivot to another system. |
 
 
-## Phase 1 : In (prise initiale)
+## Phase 1: In (Initial Foothold)
 - Reconnaissance
 - Weaponization
 - Social Engineering
@@ -24,15 +24,15 @@ Certaine phase sont tres similaire au [Cyber Kill Chain](Cyber%20Kill%20Chain.md
 - Command & control
 - Pivoting
 
-## Phase 2 : À travers (propagation du réseau)
+## Phase 2: Through (Network Propagation)
 - Discovery
 - Privilege Escalation
 - Execution
 - Credential Access
 - Lateral Movement
 
-## Phase 3 : Sortie (Action sur les objectifs)
+## Phase 3: Out (Actions on Objectives)
 - Collection
 - Exfiltration
 - Impact
-- Objectifs
+- Objectives

@@ -1,137 +1,128 @@
 # Active Directory
 
-Active Directory simplifie la gestion des appareils et des utilisateurs dans un environnement d'entreprise.
+Active Directory simplifies the management of devices and users in an enterprise environment.
 
-- Le serveur qui exécute les services AD est appelé **Contrôleur de Domaine (DC)**
+- The server running AD services is called a **Domain Controller (DC)**
 
-- Le serveur qui exécute les certificates de service est appelé [Active Directory Certificate Services](AD%20CS.md) (ADCS)
+- The server running certificate services is called [Active Directory Certificate Services](AD%20CS.md) (ADCS)
 
+> The core of any Windows domain is the **Active Directory Domain Service (ADDS)**, which acts as a catalog containing information about all the "objects" that exist on the network.
+> These objects can be: users, groups, machines, printers, shares, and many more.
 
+# Users
+Users are one of the objects called **Security Principals**, which means they can be authenticated by the domain and can be assigned privileges over **resources** such as files or printers.
 
-> Le cœur de tout domaine Windows est le **Service de Domaine Active Directory (ADDS)** qui agit comme un catalogue contenant les informations de tous les « `objets` » qui existent sur le réseau. 
-> Ses objets peuvent être : des utilisateurs, des groupes, des machines, des imprimantes, des partages et bien d'autres.
+Users can be used to represent two types of entities:
 
-# Utilisateurs
-Les utilisateurs sont l'un des objets appelés **principes de sécurité (Security Principals)**
-ce qui signifie qu'ils peuvent être authentifiés par le domaine et se voir attribuer des privilèges sur **des ressources** telles que des fichiers ou des imprimantes.
+- **People:** Users will typically represent people in the organization who need access to the network, such as employees.
 
-Les utilisateurs peuvent être utilisés pour représenter deux types d'entités :
- 
-- **Personnes (People) :** les utilisateurs représenteront généralement les personnes de l'organisation qui doivent accéder au réseau, comme les employés.
+- **Services:** You can also define users that will be used by services like IIS or MSSQL. Each service requires a user to run under, but service users are different from regular users as they will only have the privileges needed to run their specific service.
 
-- **Services :** vous pouvez également définir des utilisateurs qui seront utilisés par des services comme IIS ou MSSQL. Chaque service nécessite l'exécution d'un utilisateur, mais les utilisateurs du service sont différents des utilisateurs réguliers car ils n'auront que les privilèges nécessaires pour exécuter leur service spécifique.
+> **Note:** A security principal is an object that can act on network resources.
 
-> __NB:__ Une entité de sécurité est un objet qui peut agir sur les ressources du réseau.
+# Computers
+For each computer that joins the Active Directory domain, a machine object will be created. Machines are also considered "security principals" and are assigned an account just like any regular user.
 
-# Ordinateurs
-Pour chaque ordinateur qui rejoint le domaine Active Directory, un objet machine sera créé. Les machines sont également considérées comme des « principaux de sécurité » et se voient attribuer un compte comme n'importe quel utilisateur régulier. 
+This account has somewhat limited rights within the domain itself.
 
-Ce compte a des droits quelque peu limités au sein du domaine lui-même.
+Identifying machine accounts is relatively simple. For example, a machine named `DC01` will have a machine account called `DC01$`.
 
-L’identification des comptes machine est relativement simple. Par exemple, une machine nommée `DC01` aura un compte de machine appelé `DC01$`.
+# Groups
+Groups can have both users and machines as members. If needed, groups can also include other groups.
 
-# Groupes
-Les groupes peuvent avoir à la fois des utilisateurs et des machines comme membres. Si nécessaire, les groupes peuvent également inclure d'autres groupes.
+> Security groups are also considered security principals and can therefore have privileges over network resources. Used to grant permissions on resources.
 
-> Les groupes de sécurité sont également considérés comme des entités de sécurité et peuvent donc disposer de privilèges sur les ressources du réseau. Utilisés pour accorder des autorisations sur les ressources
+| **Security Group**                   | **Description**                                                                                                                                                             |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Domain Admins                        | Users in this group have administrative privileges over the entire domain. By default, they can administer any computer on the domain, including domain controllers.       |
+| Server Operators                     | Users in this group can administer domain controllers. They cannot modify any administrative group memberships.                                                            |
+| Backup Operators                     | Users in this group are allowed to access any file, ignoring their permissions. They are used to perform data backups on computers.                                        |
+| Account Operators                    | Users in this group can create or modify other accounts in the domain.                                                                                                     |
+| Domain Users                         | Includes all existing user accounts in the domain.                                                                                                                         |
+| Domain Computers                     | Includes all existing computers in the domain.                                                                                                                             |
+| Domain Controllers                   | Includes all existing domain controllers on the domain.                                                                                                                    |
 
-| **Groupe de sécurité**                      | **Description**                                                                                                                                                                                                 |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Administrateurs de domaine (Domain Admins)  | Les utilisateurs de ce groupe disposent de privilèges administratifs sur l'ensemble du domaine. Par défaut, ils peuvent administrer n’importe quel ordinateur du domaine, y compris les contrôleurs de domaine. |
-| Opérateurs de serveur (Server Operators)    | Les utilisateurs de ce groupe peuvent administrer les contrôleurs de domaine. Ils ne peuvent modifier aucune appartenance à un groupe administratif.                                                            |
-| Opérateurs de sauvegarde (Backup Operators) | Les utilisateurs de ce groupe sont autorisés à accéder à n'importe quel fichier, en ignorant leurs autorisations. Ils sont utilisés pour effectuer des sauvegardes de données sur les ordinateurs.              |
-| Opérateurs de comptes (Account Operators)   | Les utilisateurs de ce groupe peuvent créer ou modifier d'autres comptes dans le domaine.                                                                                                                       |
-| Utilisateurs du domaine (Domain User)       | Inclut tous les comptes d'utilisateurs existants dans le domaine.                                                                                                                                               |
-| Ordinateurs du domaine (Domain Computers)   | Inclut tous les ordinateurs existants dans le domaine.                                                                                                                                                          |
-| Contrôleurs de domaine (Domain Controller)  | Inclut tous les contrôleurs de domaine existants sur le domaine.
+Complete list of security groups in the [Microsoft documentation](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups)
 
-Liste complète des groupes de sécurité dans la [documentation Microsoft](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups) 
+# Organizational Units
+Organizational Units (OUs) are mainly used to define sets of users with similar policy requirements.
 
+> A user can only be part of one organizational unit at a time.
 
-# Les unités d'organisation
-Les unités d'organisation (Organizational Units) sont principalement utilisées pour définir des ensembles d'utilisateurs ayant des exigences de contrôle similaires.
+# Delegation
+Allows granting users specific privileges to perform advanced tasks on organizational units without requiring domain administrator intervention.
 
-> Un utilisateur ne peut faire partie que d’une seule unité d’organisation à la fois.
+# Group Policy Objects (GPO)
+Users and computers are organized into organizational units because the main idea behind this is to be able to deploy different policies for each OU individually.
 
+This way, we can offer different configurations and security baselines to users based on their department.
 
-# Délégation
-Permet d'accorder aux utilisateurs des privilèges spécifiques pour effectuer des tâches avancées sur les unités d'organisation sans avoir besoin de l'intervention d'un administrateur de domaine.
+Windows manages these policies through **Group Policy Objects (GPO)**, which are simply a set of settings that can be applied to OUs and can contain policies for `users` or `computers`, allowing you to define a baseline on specific machines and identities.
 
-# Objets de stratégie de groupe (GPO)
-Les utilisateurs et les ordinateurs sont organisé en unités d'organisation car l'idée principale derrière cela est de pouvoir déployer différentes politiques pour chaque unité d'organisation individuellement. 
+# Authentication Methods
+When using Windows domains, all credentials are stored in the domain controllers. Whenever a user attempts to authenticate to a service using domain credentials, the service will need to ask the domain controller to verify if they are correct.
 
-De cette façon, nous pouvons proposer différentes configurations et bases de sécurité aux utilisateurs en fonction de leur service.
+Two protocols can be used for network authentication in Windows domains:
 
+- Kerberos
+- NetNTLM (deprecated)
 
-Windows gère ces politiques via **des objets de stratégie de groupe ( GPO )** qui sont simplement un ensemble de paramètres pouvant être appliqués aux unités d’organisation et peuvent contenir des stratégies destinées aux `utilisateurs` ou aux `ordinateurs`, vous permettant de définir une référence sur des machines et des identités spécifiques.
+## Kerberos
+Users who log into a service using Kerberos will be assigned tickets (proof of previous authentication).
 
+Users with tickets can present them to a service to demonstrate that they have already authenticated to the network and are therefore authorized to use it.
 
-# Méthodes d'authentification
-Lors de l'utilisation de domaines Windows, toutes les informations d'identification sont stockées dans les contrôleurs de domaine. Chaque fois qu'un utilisateur tente de s'authentifier auprès d'un service à l'aide des informations d'identification de domaine, le service devra demander au contrôleur de domaine de vérifier si elles sont correctes. 
-
-Deux protocoles peuvent être utilisés pour l'authentification réseau dans les domaines Windows :
-
-- Kerberos 
-- NetNTLM (obsolète)
-
-## Kerberose
-Les utilisateurs qui se connectent à un service à l'aide de Kerberos se verront attribuer des tickets (une preuve d'une authentification antérieure).
-
-Les utilisateurs disposant de tickets peuvent les présenter à un service pour démontrer qu'ils se sont déjà authentifiés sur le réseau auparavant et qu'ils sont donc autorisés à l'utiliser.
-
-Le processus d'authentification est le suivant:
+The authentication process is as follows:
 
 ![](Images/kerberos-auth-1.png)
 ![](Images/kerberos-auth-2.png)
 ![](Images/kerberos-auth-3.png)
 
-1. L'utilisateur envoie son nom d'utilisateur et un horodatage crypté à l'aide d'une clé dérivée de son mot de passe au **Key Distribution Center (KDC)** , un service installé sur le DC en charge de créer des tickets Kerberos sur le réseau.
+1. The user sends their username and a timestamp encrypted using a key derived from their password to the **Key Distribution Center (KDC)**, a service installed on the DC responsible for creating Kerberos tickets on the network.
 
-2. Le KDC créera et renverra un **Ticket Granting Ticket ( TGT )** , qui permettra à l'utilisateur de demander des billets supplémentaires pour accéder à des services spécifiques. 
+2. The KDC will create and return a **Ticket Granting Ticket (TGT)**, which will allow the user to request additional tickets to access specific services.
 
-> La nécessité d'un ticket pour obtenir plus de tickets permet aux utilisateurs de demander des tickets de service sans transmettre leurs informations d'identification à chaque fois qu'ils souhaitent se connecter à un service. Avec le TGT , une **clé de session** est remise à l'utilisateur, dont il aura besoin pour générer les requêtes suivantes.
-    
-> Notez que le TGT est crypté à l'aide du hachage du mot de passe du compte **krbtgt** et que l'utilisateur ne peut donc pas accéder à son contenu. Il est essentiel de savoir que le TGT chiffré inclut une copie de la clé de session dans son contenu, et que le KDC n'a pas besoin de stocker la clé de session car il peut récupérer une copie en déchiffrant le TGT si nécessaire.
+> The need for a ticket to get more tickets allows users to request service tickets without passing their credentials every time they want to connect to a service. Along with the TGT, a **session key** is given to the user, which they will need to generate subsequent requests.
 
-3. Lorsqu'un utilisateur souhaite se connecter à un service sur le réseau comme un partage, un site Web ou une base de données, il utilisera son TGT pour demander au KDC un **service d'octroi de tickets (TGS)** . 
+> Note that the TGT is encrypted using the password hash of the **krbtgt** account, so the user cannot access its content. It is essential to know that the encrypted TGT includes a copy of the session key in its content, and the KDC does not need to store the session key as it can retrieve a copy by decrypting the TGT if necessary.
 
-> Les TGS sont des tickets qui permettent la connexion uniquement au service spécifique pour lequel ils ont été créés. Pour demander un TGS, l'utilisateur enverra son nom d'utilisateur et un horodatage crypté à l'aide de la clé de session, ainsi que le TGT et un **nom principal de service (SPN),** qui indique le nom du service et du serveur auquel nous avons l'intention d'accéder.
+3. When a user wants to connect to a service on the network such as a share, website, or database, they will use their TGT to request a **Ticket Granting Service (TGS)** from the KDC.
 
-4. En conséquence, le KDC nous enverra un TGS accompagné d'une **clé de session de service** , dont nous aurons besoin pour nous authentifier auprès du service auquel nous souhaitons accéder. 
+> TGS tickets only allow connection to the specific service for which they were created. To request a TGS, the user will send their username and a timestamp encrypted using the session key, along with the TGT and a **Service Principal Name (SPN)**, which indicates the name of the service and server we intend to access.
 
-> Le TGS est chiffré à l'aide d'une clé dérivée du  **Service Owner Hash** . Le propriétaire du service est le compte utilisateur ou machine sous lequel le service s'exécute. Le TGS contient une copie de la clé de session de service sur son contenu crypté afin que le propriétaire du service puisse y accéder en déchiffrant le TGS.
+4. As a result, the KDC will send us a TGS along with a **service session key**, which we will need to authenticate to the service we want to access.
 
-5. Le TGS peut ensuite être envoyé au service souhaité pour s'authentifier et établir une connexion. Le service utilisera le hachage du mot de passe de son compte configuré pour déchiffrer le TGS et valider la clé de session de service.
+> The TGS is encrypted using a key derived from the **Service Owner Hash**. The service owner is the user or machine account under which the service runs. The TGS contains a copy of the service session key in its encrypted content so that the service owner can access it by decrypting the TGS.
 
-
+5. The TGS can then be sent to the desired service to authenticate and establish a connection. The service will use its configured account password hash to decrypt the TGS and validate the service session key.
 
 ## NetNTLM
-Fonctionne en utilisant un mécanisme défi-réponse.  Le processus d'authentification est le suivant:
+Works using a challenge-response mechanism. The authentication process is as follows:
 
 ![](Images/netntlm-auth.png)
 
-1. Le client envoie une demande d'authentification au serveur auquel il souhaite accéder.
+1. The client sends an authentication request to the server it wants to access.
 
-2. Le serveur génère un nombre aléatoire et l'envoie comme défi au client.
+2. The server generates a random number and sends it as a challenge to the client.
 
-3. Le client combine son hachage de mot de passe NTLM avec le défi (et d'autres données connues) pour générer une réponse au défi et la renvoie au serveur pour vérification.
+3. The client combines its NTLM password hash with the challenge (and other known data) to generate a response to the challenge and sends it back to the server for verification.
 
-4. Le serveur transmet le défi et la réponse au contrôleur de domaine pour vérification.
+4. The server forwards the challenge and response to the domain controller for verification.
 
-5. Le contrôleur de domaine utilise le défi pour recalculer la réponse et la compare à la réponse originale envoyée par le client. S'ils correspondent tous les deux, le client est authentifié ; sinon, l'accès est refusé. Le résultat de l'authentification est renvoyé au serveur.
+5. The domain controller uses the challenge to recalculate the response and compares it to the original response sent by the client. If both match, the client is authenticated; otherwise, access is denied. The authentication result is returned to the server.
 
-6. Le serveur transmet le résultat de l'authentification au client.
+6. The server forwards the authentication result to the client.
 
-> Le processus décrit s'applique lors de l'utilisation d'un compte de domaine et que Le mot de passe (ou hachage) de l'utilisateur n'est jamais transmis via le réseau.
+> The described process applies when using a domain account and the user's password (or hash) is never transmitted over the network.
 
-> Si un compte local est utilisé, le serveur peut vérifier lui-même la réponse au défi sans nécessiter d'interaction avec le contrôleur de domaine, car le hachage du mot de passe est stocké localement sur son SAM.
+> If a local account is used, the server can verify the challenge response itself without requiring interaction with the domain controller, as the password hash is stored locally in its SAM.
 
-# Arbres, Forêts et Trusts 
+# Trees, Forests, and Trusts
 
-## Arbres
-Permet l'intégration de plusieurs domaines qui peuvent être joints dans un **Tree**.
+## Trees
+Allows the integration of multiple domains that can be joined into a **Tree**.
 
-Imaginons un domaine `microsoft.local` divisé en deux sous-domaines pour les branches britanniques et américaines, on peut pourriez créer une arborescence avec un domaine racine de `microsoft.local`et deux sous-domaines appelés `uk.microsoft.local`et `us.microsoft.local`, chacun avec son AD , ses ordinateurs et ses utilisateurs.
+Imagine a `microsoft.local` domain divided into two subdomains for UK and US branches. We could create a tree with a root domain of `microsoft.local` and two subdomains called `uk.microsoft.local` and `us.microsoft.local`, each with its own AD, computers, and users.
 
 ```
 └───microsoft.local
@@ -139,23 +130,23 @@ Imaginons un domaine `microsoft.local` divisé en deux sous-domaines pour les br
     └───us.microsoft.local
 ```
 
-Cette structure partitionnée nous permet de mieux contrôler qui peut accéder à quoi dans le domaine.
+This partitioned structure allows us to better control who can access what in the domain.
 
-> Un nouveau groupe de sécurité doit être introduit lorsqu'on parle d'arbres et de forêts. Le groupe **Administrateurs d'entreprise** accordera à un utilisateur des privilèges administratifs sur tous les domaines d'une entreprise.
+> A new security group must be introduced when talking about trees and forests. The **Enterprise Admins** group will grant a user administrative privileges over all domains in an enterprise.
 
-## Forêts
+## Forests
 
-L'union de plusieurs arbres avec des espaces de noms différents dans le même réseau est appelée **forêt**
+The union of multiple trees with different namespaces in the same network is called a **forest**.
 
-## Relations de confiance
-La relations de confiance entre les domaines permet d'autoriser un utilisateur du domaine `uk.microsoft.local` à accéder aux ressources du domaine `us.microsoft.local`.
+## Trust Relationships
+Trust relationships between domains allow authorizing a user from the `uk.microsoft.local` domain to access resources in the `us.microsoft.local` domain.
 
-- La relation de confiance la plus simple qui puisse être établie est une **relation de confiance à sens unique** . 
+- The simplest trust relationship that can be established is a **one-way trust**.
 
-Dans une approbation unidirectionnelle, si `Domain AAA` trusts `Domain BBB`, cela signifie qu'un utilisateur sur BBB peut être autorisé à accéder aux ressources sur AAA
+In a one-way trust, if `Domain AAA` trusts `Domain BBB`, this means that a user on BBB can be authorized to access resources on AAA.
 
 ![](Images/trusts.png)
 
-> Le sens de la relation de confiance à sens unique est contraire à celui du sens d'accès.
+> The direction of the one-way trust is opposite to the direction of access.
 
-- **Des relations de confiance bidirectionnelles** peuvent également être établies pour permettre aux deux domaines d'autoriser mutuellement les utilisateurs de l'autre. Par défaut, joindre plusieurs domaines sous une arborescence ou une forêt formera une relation de confiance bidirectionnelle.
+- **Two-way trusts** can also be established to allow both domains to mutually authorize users from the other. By default, joining multiple domains under a tree or forest will form a two-way trust relationship.

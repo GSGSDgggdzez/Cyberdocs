@@ -10,7 +10,7 @@ wget https://github.com/Valve/fingerprintjs2/archive/master.zip
 cd fingerprintjs2
 ```
 
-Creer un fichier `fingerprint2.html`
+Create a file `fingerprint2.html`
 
 ```html
 <!DOCTYPE html>
@@ -54,9 +54,9 @@ Creer un fichier `fingerprint2.html`
 </html>
 ```
 
-Coller un `User-Agent` sur ce site https://developers.whatismybrowser.com pour avoir plus d'informations.
+Paste a `User-Agent` on this site https://developers.whatismybrowser.com to get more information.
 
-Creer un fichier `fingerprint2server.html`
+Create a file `fingerprint2server.html`
 
 ```html
 <!DOCTYPE html>
@@ -97,7 +97,7 @@ Creer un fichier `fingerprint2server.html`
 </html>
 ```
 
-Creer un fichier `js.php`
+Create a file `js.php`
 
 ```php
 <?php
@@ -113,5 +113,5 @@ sudo chown -R www-data:www-data fp
 ```
 
 ```sh
-cat fingerprint2server.html # viste this page on client browser
+cat fingerprint2server.html # visit this page on client browser
 ```

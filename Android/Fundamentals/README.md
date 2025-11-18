@@ -1,15 +1,15 @@
-# Structure d'une APK
+# APK Structure
 
-- `AndroidManifest.xml` : le fichier de configuration manifeste au format XML binaire .
+- `AndroidManifest.xml` : the manifest configuration file in binary XML format.
 
-- `META-INF/` : dossier contenant le fichier `MANIFEST.MF`, qui stocke les métadonnées sur le contenu du JAR. qui sera parfois stocké dans un dossier nommé original. La signature de l'APK est également stockée dans ce dossier.
+- `META-INF/` : folder containing the `MANIFEST.MF` file, which stores metadata about the JAR content. which will sometimes be stored in a folder named original. The APK signature is also stored in this folder.
 
-- `Assets/`: dossier optionnel contenant les actifs des applications, qui peuvent être récupérés par AssetManager.
+- `Assets/`: optional folder containing application assets, which can be retrieved by AssetManager.
 
-- `resources.arsc` : fichier contenant les ressources applicatives précompilées, en XML binaire .
+- `resources.arsc` : file containing precompiled application resources, in binary XML.
 
-- `lib/` : dossier optionnel contenant du code compilé - c'est à dire des bibliothèques de code natif.
+- `lib/` : optional folder containing compiled code - i.e. native code libraries.
 
-- `classes.dex` : code d'application compilé au format dex.
+- `classes.dex` : application code compiled in dex format.
 
-- `res/`: dossier contenant des ressources non compilées dans resources.arsc
+- `res/`: folder containing resources not compiled in resources.arsc

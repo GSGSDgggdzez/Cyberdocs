@@ -19,4 +19,3 @@ cat subdomain.list | aquatone -out ./aquatone -screenshot-timeout 1000
 ```sh
 nslookup -type=any -query=AXFR $TARGET nameserver.target.domain
 ```
-

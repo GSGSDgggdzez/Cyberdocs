@@ -1,8 +1,8 @@
 # Social Engineering Linux Target
 
-Fait partie la phase de l'access initial
+Part of the initial access phase
 
-Le but est d'envoyer un fichier `.desktop` a notre cible et obtenir un reverse shell.
+The goal is to send a `.desktop` file to our target and obtain a reverse shell.
 
 ```sh
 [Desktop Entry]

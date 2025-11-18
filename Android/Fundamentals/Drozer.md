@@ -1,6 +1,6 @@
-# Aide-mémoire de base de Drozer
+# Drozer Basic Cheat Sheet
 
-Exploitation du fournisseur de contenu
+Content Provider Exploitation
 
 ```sh
 run app.provider.info -a package_name
@@ -18,7 +18,7 @@ run scanner.provider.injection -a package_name
 run scanner.provider.traversal -a package_name
 ```
 
-Exploitation des services
+Service Exploitation
 
 ```sh
 run app.service.info -a package_name

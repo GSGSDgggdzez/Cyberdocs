@@ -1,36 +1,36 @@
 # Anonymization
 
-Les etapes a suivre pour etre anonyme lors de nos recherche sur internet:
+Steps to follow to be anonymous during our internet research:
 
-**Le système :**
+**The system:**
 
-- Utilisez Linux avec (USB Live, ou VM) et des services tel que le navigateur TOR ou un VPN pour masquez notre adresse IP publique.
+- Use Linux with (USB Live, or VM) and services such as the TOR browser or a VPN to hide our public IP address.
 
-- Effectuez vos recherches et effacez enfin toute trace de vous en redémarrant simplement le système (soit à l'aide d'un snapshot, soit avec l'USB Live).
+- Conduct your research and finally erase all traces of you by simply restarting the system (either using a snapshot or with USB Live).
 
-- [Guide pour les machines de bricolage](https://nixintel.info/tag/diy-buscador/)
+- [Guide for DIY machines](https://nixintel.info/tag/diy-buscador/)
 
-**Les Extensions :**
+**Extensions:**
 
-Installer des extensions qui bloquent ou réduire la quantité d'informations que les sites Web obtiennent à votre sujet:
+Install extensions that block or reduce the amount of information that websites get about you:
 
-- `User Agent Switcher and Manager` : Usurpe la chaîne User Agent de votre navigateur en une désignation personnalisée.
+- `User Agent Switcher and Manager`: Spoofs your browser's User Agent string to a custom designation.
 
-- `No script` : Autorise l'exécution de JavaScript, Java, Flash et d'autres plugins uniquement par des sites Web fiables de votre choix
+- `No script`: Allows JavaScript, Java, Flash and other plugins to run only by trusted websites of your choice
 
-- `Privacy Badger` : Empêche les annonceurs et autres outils de suivi tiers de suivre secrètement où vous allez et quelles pages vous consultez sur le Web
+- `Privacy Badger`: Prevents advertisers and other third-party trackers from secretly tracking where you go and what pages you view on the Web
 
-- `Unlock Origin` : Filtre les demandes d'affichage de publicités et empêche votre navigateur de récupérer et d'afficher du contenu marketing.
+- `Unlock Origin`: Filters ad display requests and prevents your browser from fetching and displaying marketing content.
 
-- `Automatic deletion of cookies` : Supprimez automatiquement les cookies indésirables de vos onglets fermés tout en conservant ceux que vous souhaitez.
+- `Automatic deletion of cookies`: Automatically delete unwanted cookies from your closed tabs while keeping the ones you want.
 
-**Sock Puppets :**
+**Sock Puppets:**
 
-La meilleure façon de séparer votre personne réelle de votre personne numérique est d'utiliser les outils [Sock Puppets](./Sock%20Puppets.md).
+The best way to separate your real person from your digital person is to use the [Sock Puppets](./Sock%20Puppets.md) tools.
 
 ## Online Tracking
 
-Evaluer votre degré d'anonymat lorsque vous naviguez sur Internet en affichent les informations fournies par notre navigateur Web
+Assess your degree of anonymity when browsing the Internet by displaying information provided by our web browser
 
 - https://coveryourtracks.eff.org
 - https://browserleaks.com/

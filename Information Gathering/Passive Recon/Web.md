@@ -35,13 +35,13 @@ dig axfr target.com @NSZTM1.DIGI.NINJA | cut -d " " -f3
 - Project Sonar
 
 ```sh 
-# Tous les sous-domaines pour un domaine donné.
+# All subdomains for a given domain.
 curl -s https://sonar.omnisint.io/subdomains/target.com | jq -r '.[]' | sort -u 
 
-# Tous les TLD trouvés pour un domaine donné.
+# All TLDs found for a given domain.
 curl -s https://sonar.omnisint.io/tlds/target.com | jq -r '.[]' | sort -u      
 
-# Tous les résultats sur tous les TLD pour un domaine donné.
+# All results across all TLDs for a given domain.
 curl -s https://sonar.omnisint.io/all/target.com | jq -r '.[]' | sort -u       
 
 # Reverse DNS lookup on IP address
@@ -53,13 +53,13 @@ curl -s https://sonar.omnisint.io/reverse/{ip}/{mask}
 
 **Certificate Transparency.**
 
-Les certificats SSL/TLS constituent une autre source d'informations intéressante pour extraire des sous-domaines. 
+SSL/TLS certificates are another interesting source of information for extracting subdomains.
 
 - https://search.censys.io/
 - https://crt.sh
 
 ```sh
-# Transparence des certificats.
+# Certificate transparency.
 curl -s "https://crt.sh/?q=target.com&output=json" | jq -r '.[] | "\(.name_value)\n\(.common_name)"' | sort -u > "crt.sh_ouput.txt"
 ```
 
@@ -72,26 +72,26 @@ openssl s_client -ign_eof 2>/dev/null <<<$'HEAD / HTTP/1.0\r\n\r' -connect "targ
 ```sh
 export TARGET=target.com
 
-# Collecter des informations à partir de ces sources.
+# Collect information from these sources.
 cat sources.txt | while read source; do theHarvester -d "${TARGET}" -b $source -f "${source}_${TARGET}";done
 
-# Extraire tous les sous-domaines trouvés et les trier
+# Extract all found subdomains and sort them
 cat *.json | jq -r '.hosts[]' 2>/dev/null | cut -d':' -f 1 | sort -u > "${TARGET}_theHarvester.txt"
 
-# Fusionner tous les fichiers
+# Merge all files
 cat $TARGET_*.txt | sort -u > $TARGET_subdomains_passive.txt
 ```
 
-La recherche IP inversée pour trouver d'autres serveurs partageant les mêmes adresses IP:
+Reverse IP lookup to find other servers sharing the same IP addresses:
 
 - [View DNS](https://viewdns.info)
 - [Threati Intelligence Platform](https://threatintelligenceplatform.com/)
-## Identification des infrastructures Passive
+## Passive Infrastructure Identification
 
 - [Netcraft](https://sitereport.netcraft.com)
 - [WayBackMachine](http://web.archive.org/)
 
-Inspecter les URL enregistrées par [Wayback Machine]([https://github.com/tomnomnom/waybackurls](https://github.com/tomnomnom/waybackurls)) et rechercher des mots-clés spécifiques
+Inspect URLs recorded by [Wayback Machine]([https://github.com/tomnomnom/waybackurls](https://github.com/tomnomnom/waybackurls)) and search for specific keywords
 
 ```sh
 waybackurls -dates https://target.com > waybackurls_output.txt
@@ -99,30 +99,30 @@ waybackurls -dates https://target.com > waybackurls_output.txt
 
 ## Active Subdomain Enumeration
 
-- [Transferts de zone](https://hackertarget.com/zone-transfer/)
+- [Zone Transfers](https://hackertarget.com/zone-transfer/)
 - [HackerTarget]([https://hackertarget.com/zone-transfer/](https://hackertarget.com/zone-transfer/))
 
 ```sh
-# Identification des serveurs de noms
+# Identify name servers
 nslookup -type=NS target.com
 
-# Transfert de zone à l'aide de Nslookup sur le domaine cible et son serveur de noms.
+# Zone transfer using Nslookup on the target domain and its name server.
 nslookup -type=any -query=AXFR target.com <nameserver>
 ```
 
-> Si nous parvenons à effectuer un transfert de zone réussi pour un domaine, il n'est pas nécessaire de continuer à énumérer ce domaine particulier car cela extraira toutes les informations disponibles.
+> If we manage to perform a successful zone transfer for a domain, there is no need to continue enumerating that particular domain as it will extract all available information.
 
-## Identification des infrastructures Active
+## Active Infrastructure Identification
 
 ```sh
-# Identification de la technologie.
+# Technology identification.
 whatweb -a 3 https://target.com -v
 
-# Empreintes digitales WAF.
+# WAF fingerprinting.
 wafw00f -v https://target.com
 ```
 
-[Aquatone]([https://github.com/michenriksen/aquatone](https://github.com/michenriksen/aquatone)) effectuer des captures d'écran pour une liste de sous-domains
+[Aquatone]([https://github.com/michenriksen/aquatone](https://github.com/michenriksen/aquatone)) to perform screenshots for a list of subdomains
 
 ```sh
 cat subdomains_output.txt | aquatone -out ./aquatone -screenshot-timeout 1000

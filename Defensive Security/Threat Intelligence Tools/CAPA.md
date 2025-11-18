@@ -1,8 +1,8 @@
 # CAPA (Common Analysis Platform for Artifacts) 
 
-L'outil est particulièrement utile pour l'analyse des logiciels malveillants et la chasse aux menaces. Il est conçu pour identifier les fonctionnalités présentes dans les fichiers exécutables tels que les exécutables portables ( PE ), les binaires ELF, les modules .NET, le shellcode et même les rapports sandbox. 
+The tool is particularly useful for malware analysis and threat hunting. It is designed to identify functionalities present in executable files such as Portable Executables (PE), ELF binaries, .NET modules, shellcode and even sandbox reports.
 
-Exécuter l'outil CAPA sur un binaire
+Execute the CAPA tool on a binary
 
 ```sh
 capa.exe .\binary

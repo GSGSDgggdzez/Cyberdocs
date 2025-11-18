@@ -1,6 +1,6 @@
 # AS-REP Roasting
 
-AS-REP Roasting vide les hachages krbasrep5 des comptes d'utilisateurs pour lesquels la pré-authentification Kerberos est désactivée.
+AS-REP Roasting dumps krbasrep5 hashes of user accounts that have Kerberos pre-authentication disabled.
 
 **Impacket**
 

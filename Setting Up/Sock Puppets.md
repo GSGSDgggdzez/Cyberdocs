@@ -1,7 +1,7 @@
 # Sock Puppets
 
-Guides sur Internet pour créer votre propre marionnette à chaussettes et les meilleurs conseils pour NE PAS en construire une.
+Guides on the Internet to create your own sock puppet and the best tips NOT to build one.
 
 - https://www.secjuice.com/the-art-of-the-sock-osint-humint/
 
-- [Création d'une marionnette à chaussettes efficace pour les enquêtes de l'OSINT](https://web.archive.org/web/20210125191016/https://jakecreps.com/2018/11/02/sock-puppets/)
+- [Creating an Effective Sock Puppet for OSINT Investigations](https://web.archive.org/web/20210125191016/https://jakecreps.com/2018/11/02/sock-puppets/)

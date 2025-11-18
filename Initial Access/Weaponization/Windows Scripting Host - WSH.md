@@ -1,10 +1,10 @@
 # Windows Scripting Host - WSH
 
-WSH (Windows Scripting Host) L'hôte de script Windows est un outil d'administration Windows intégré qui exécute des fichiers de commandes pour automatiser et gérer les tâches au sein du système d'exploitation.
+WSH (Windows Scripting Host) is a built-in Windows administration tool that runs batch files to automate and manage tasks within the operating system.
 
-Il s'agit d'un moteur natif Windows, `cscript.exe` (pour les scripts de ligne de commande) et `wscript.exe` (pour les scripts d'interface utilisateur), qui sont responsables de l'exécution de divers scripts Microsoft Visual Basic (VBScript), notamment `vbs` et `vbe` .
+It is a native Windows engine, `cscript.exe` (for command-line scripts) and `wscript.exe` (for UI scripts), which are responsible for executing various Microsoft Visual Basic (VBScript) scripts, including `vbs` and `vbe`.
 
-Utilisons maintenant le VBScript `payload.vbs` pour exécuter des fichiers exécutables.
+Let's now use the VBScript `payload.vbs` to execute executable files.
 
 ```js
 Set shell = WScript.CreateObject("Wscript.Shell")
@@ -16,7 +16,7 @@ wscript c:\Temp\payload.vbs
 ```
 
 
-Si les fichiers VBS sont sur la liste noire, nous pouvons alors renommer le fichier `.vbs` en  `.txt` et l'exécuter comme suit :
+If VBS files are blacklisted, we can then rename the `.vbs` file to `.txt` and execute it as follows:
 
 ```sh
 wscript /e:VBScript c:\Temp\payload.txt

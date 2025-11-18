@@ -1,11 +1,11 @@
 # Cyber Defence Frameworks
-Le cadre définit les étapes utilisées par les adversaires ou les acteurs malveillants dans le cyberespace.
+The framework defines the steps used by adversaries or malicious actors in cyberspace.
 
-Pour réussir, un adversaire doit passer par toutes les phases de la **Kill Chain**.
+To succeed, an adversary must go through all phases of the **Kill Chain**.
 
-> Une « Kill Chain » se sont les différentes étapes d’une attaque. 
+> A "Kill Chain" refers to the different stages of an attack.
 
-> Dans le domaine de la cybersécurité, une « Kill Chain » est utilisée pour décrire la méthodologie/le chemin utilisé par les attaquants tels que les pirates informatiques ou les APT pour approcher et intruser une cible.
+> In the field of cybersecurity, a "Kill Chain" is used to describe the methodology/path used by attackers such as hackers or APTs to approach and intrude into a target.
 
 [Cyber Kill Chain](Cyber%20Kill%20Chain.md)
 
@@ -14,13 +14,13 @@ Pour réussir, un adversaire doit passer par toutes les phases de la **Kill Chai
 [Pyramid Of Pain](Pyramid%20Of%20Pain.md)
 
 
-## La modélisation des menaces
-C'est une série d'étapes visant à terme à améliorer la sécurité d'un système. 
+## Threat Modeling
+This is a series of steps ultimately aimed at improving the security of a system.
 
-1. Identifier quels systèmes et applications doivent être sécurisés et quelle fonction ils remplissent dans l'environnement. 
+1. Identify which systems and applications need to be secured and what function they serve in the environment.
 
-2. Évaluer les vulnérabilités et les faiblesses que ces systèmes et applications peuvent présenter et comment ils pourraient être potentiellement exploités
+2. Assess the vulnerabilities and weaknesses that these systems and applications may present and how they could potentially be exploited
 
-3. Créer un plan d'action pour sécuriser ces systèmes et applications contre les vulnérabilités mises en évidence
+3. Create an action plan to secure these systems and applications against the highlighted vulnerabilities
 
-4. Mettre en place des politiques pour empêcher que ces vulnérabilités ne se reproduisent.
+4. Implement policies to prevent these vulnerabilities from recurring.

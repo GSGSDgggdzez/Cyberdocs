@@ -1,11 +1,11 @@
 # Wireshark
 
 ## Packet Navigation
-Wireshark calcule le nombre de paquets étudiés et attribue un numéro unique à chaque paquet.
+Wireshark calculates the number of packets studied and assigns a unique number to each packet.
 
-- **Accéder au paquet**
+- **Go to Packet**
 
-Permettent de revenir facilement à un point spécifique d'un événement.
+Allows you to easily return to a specific point in an event.
 
 ```
 Go
@@ -14,19 +14,19 @@ Packet: <NUMBER>
 Go to packet
 ```
 
-- **Trouver des paquets**
+- **Find Packets**
 
-Wireshark peut rechercher des paquets en fonction de leur contenu.
+Wireshark can search for packets based on their content.
 
 ```
 Edit
 Find Packet...
-Packet details | String: <VALEUR>
+Packet details | String: <VALUE>
 ```
 
-**Exporter des objets (fichiers)**
+**Export Objects (files)**
 
-Wireshark peut extraire les fichiers transférés via le réseau. L'exportation d'objets n'est disponible que pour les flux de protocoles sélectionnés (DICOM, HTTP , IMF, SMB et TFTP).
+Wireshark can extract files transferred over the network. Object export is only available for selected protocol streams (DICOM, HTTP, IMF, SMB and TFTP).
 
 ```
 File
@@ -34,9 +34,9 @@ Export Objects
 ...
 ```
 
-**Format d'affichage de l'heure**
+**Time Display Format**
 
-Par défaut, Wireshark affiche l'heure en « secondes depuis le début de la capture », l'utilisation courante consiste à utiliser le format d'affichage de l'heure UTC pour une meilleure vue.
+By default, Wireshark displays time in "seconds since capture start", the common usage is to use the UTC time display format for a better view.
 
 ```
 View
@@ -46,9 +46,9 @@ UTC Date and Time of Fay (...)
 
 ## Capturing Kerberose Pre-Auth
 
-Si la pré-authentification est désactivée, n’importe qui peut demander un TGT au nom d’un compte, sans envoyer d’authentifiant, et le KDC renverra un `KRB_AS_REP` au demandeur.
+If pre-authentication is disabled, anyone can request a TGT on behalf of an account, without sending credentials, and the KDC will return a `KRB_AS_REP` to the requester.
 
-Structure d'un hash `AS-REQ` l'hors d'une `Pre-Auth`
+Structure of an `AS-REQ` hash during `Pre-Auth`
 
 ```sh
 $krb5pa$etype$username$domain$cipher
@@ -62,4 +62,4 @@ dipeua@probook:~$ hashcat -a 0 -m 19900 hash.txt /opt/rockyou.txt --show
 $krb5pa$18$william.dupond$catcorp.local$fc8bbe22b2c967b222ed73dd7616ea71b2ae0c1b0c3688bfff7fecffdebd4054471350cb6e36d3b55ba3420be6c0210b2d978d3f51d1eb4f:.........
 ```
 
-Donc la pré-authentification pour le compte de `william.dupond` a été désactiver
+So pre-authentication for the `william.dupond` account has been disabled

