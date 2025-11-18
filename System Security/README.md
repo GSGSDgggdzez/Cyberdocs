@@ -1,6 +1,6 @@
 # System Security
 
-Les protections de mémoire modernes 
+Modern memory protections:
 
 - DEP (Data Execution Prevention)
 - ASLR (Address Space Layout Randomization) 
@@ -9,47 +9,47 @@ Les protections de mémoire modernes
 
 ## CPU Registers
 
-### 1. Registres de données
+### 1. Data Registers
 
-| Registre 32 bits | Registre 64 bits | Name        | Description                                                                                                                                                                                        |
+| 32-bit Register | 64-bit Register | Name        | Description                                                                                                                                                                                        |
 | -------------------- | -------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `EAX`                | `RAX`                | Accumulator | L'accumulateur est utilisé en entrée/sortie et pour les opérations arithmétiques. (Used in arthmetic operation)                                                                                        |
-| `EBX`                | `RBX`                | Base        | La base est utilisée dans l'adressage indexé. (Used as a pointer to data)                                                                                                                              |
-| `ECX`                | `RCX`                | Counter     | Le compteur est utilisé pour faire pivoter les instructions et compter les boucles. (Used in shift/rotate instruction and loops)                                                                       |
-| `EDX`                | `RDX`                | Data        | Les données sont utilisées pour les E/S et dans les opérations arithmétiques pour les opérations de multiplication et de division impliquant de grandes valeurs. (Used in arthmetic operation and I/O) |
+| `EAX`                | `RAX`                | Accumulator | The accumulator is used for input/output and arithmetic operations. (Used in arthmetic operation)                                                                                        |
+| `EBX`                | `RBX`                | Base        | The base is used in indexed addressing. (Used as a pointer to data)                                                                                                                              |
+| `ECX`                | `RCX`                | Counter     | The counter is used for rotate instructions and loop counting. (Used in shift/rotate instruction and loops)                                                                       |
+| `EDX`                | `RDX`                | Data        | Data is used for I/O and in arithmetic operations for multiplication and division operations involving large values. (Used in arthmetic operation and I/O) |
 
-### 2. Registres de pointeurs
+### 2. Pointer Registers
 
-| Registre 32 bits | Registre 64 bits | Name                | Description                                                                                                                                                                                                                                                   |
+| 32-bit Register | 64-bit Register | Name                | Description                                                                                                                                                                                                                                                   |
 | -------------------- | -------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ESP`                | `RSP`                | Stack Pointer       | Le pointeur de pile pointe vers le haut de la pile. (Pointer to the top of the stack)                                                                                                                                                                             |
-| `EBP`                | `RBP`                | Base Pointe         | Le pointeur de base est également connu sous le nom `Stack Base Pointer`de `Frame Pointer`pointeur qui pointe vers la base de la pile. (Pointer to the base of the stack (aka Stack Pointer, or Frame pointer))                                                   |
-| `EIP`                | `RIP`                | Instruction Pointer | Le pointeur d'instruction stocke l'adresse de décalage de la prochaine instruction à exécuter. (Controls the program execution by storing a pointer to the address of the next instruction that will be executed: It tells the CPU where the next instruction is) |
+| `ESP`                | `RSP`                | Stack Pointer       | The stack pointer points to the top of the stack. (Pointer to the top of the stack)                                                                                                                                                                             |
+| `EBP`                | `RBP`                | Base Pointer        | The base pointer is also known as `Stack Base Pointer` or `Frame Pointer` which points to the base of the stack. (Pointer to the base of the stack (aka Stack Pointer, or Frame pointer))                                                   |
+| `EIP`                | `RIP`                | Instruction Pointer | The instruction pointer stores the offset address of the next instruction to be executed. (Controls the program execution by storing a pointer to the address of the next instruction that will be executed: It tells the CPU where the next instruction is) |
 
-### 3. Registres d'indexation
+### 3. Index Registers
 
-| Enregistrer 32 bits | Enregistrer 64 bits | Name         | Description                                                                                                                                             |
+| 32-bit Register | 64-bit Register | Name         | Description                                                                                                                                             |
 | ----------------------- | ----------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ESI`                   | `RSI`                   | Source Index | L'index source est utilisé comme pointeur à partir d'une source pour les opérations sur les chaînes. (Used as a pointer to source in stream operation)      |
-| `EDI`                   | `RDI`                   | Destination  | La destination est utilisée comme pointeur vers une destination pour les opérations sur les chaînes. (Used as a pointer to destination in stream operation) |
+| `ESI`                   | `RSI`                   | Source Index | The source index is used as a pointer from a source for string operations. (Used as a pointer to source in stream operation)      |
+| `EDI`                   | `RDI`                   | Destination  | The destination is used as a pointer to a destination for string operations. (Used as a pointer to destination in stream operation) |
 
 
 ## Endianness
 
-Lors des opérations de chargement et de sauvegarde dans les registres et les mémoires, les octets sont lus dans un ordre appelé `endianness`. 
+During load and save operations in registers and memory, bytes are read in an order called `endianness`. 
 
-L'endianité se distingue entre les formats `little-endian` et le `big-endian`
+Endianness is distinguished between `little-endian` and `big-endian` formats.
 
-Exemple avec les valeurs suivantes :
+Example with the following values:
 
-- Adresse: `0xffff0000`
-- Mot: `\xAA\xBB\xCC\xDD`
+- Address: `0xffff0000`
+- Word: `\xAA\xBB\xCC\xDD`
 
-| Adresse mémoire | 0xffff0000 | 0xffff0001 | 0xffff0002 | 0xffff0003 |
+| Memory Address | 0xffff0000 | 0xffff0001 | 0xffff0002 | 0xffff0003 |
 | ------------------- | -------------- | -------------- | -------------- | -------------- |
 | `big-endian`        | AA             | BB             | CC             | DD             |
 | `little-endian`     | DD             | CC             | BB             | AA             |
 
-Ceci est très important pour que nous puissions entrer notre code dans le bon ordre plus tard lorsque nous devrons indiquer au CPU vers quelle adresse il doit pointer.
+This is very important so that we can enter our code in the correct order later when we need to tell the CPU which address to point to.
 
 

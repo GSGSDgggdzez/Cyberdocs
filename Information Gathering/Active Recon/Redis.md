@@ -6,25 +6,25 @@ Connect to redis server
 redis-cli -h <host> -p <port>
 ```
 
-Pour voir combien de bases sont configurées :
+To see how many databases are configured:
 
 ```sh
 CONFIG GET databases
 ```
 
-Pour voir quelles bases contiennent des données :
+To see which databases contain data:
 
 ```sh
 INFO keyspace
 ```
 
-Voir le contenu
+View the content
 
 ```sh
 KEYS *
 ```
 
-Ecrire un script PHP dans un fichier du serveur web.
+Write a PHP script to a web server file.
 
 ```sh
 CONFIG SET dir /var/www/html

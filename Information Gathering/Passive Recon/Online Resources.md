@@ -1,4 +1,4 @@
-# Online Ressouces
+# Online Resources
 
 |**Documentation**|
 |-|
@@ -108,7 +108,7 @@
 |**Leak Resources**|
 |-|
 | [Rapid7 FDNS Databases](https://opendata.rapid7.com/sonar.fdns_v2/) |
-| Déterminer si les informations d'une personne, ont déjà été impliquées dans une violation de données |
+| Determine if a person's information has been involved in a data breach |
 | [https://haveibeenpwned.com/](https://haveibeenpwned.com/) |
 | [https://www.dehashed.com/](https://www.dehashed.com/) |
 | [http://archive.fo/](http://archive.fo/) |
@@ -125,7 +125,7 @@
 | [https://www.paterva.com/index.php](https://www.paterva.com/index.php) |
 
 
-|**Other Ressources**|
+|**Other Resources**|
 |-|
 | [https://securityheaders.com](https://securityheaders.com) |
 | [https://digi.ninja/projects/twofi.php](https://digi.ninja/projects/twofi.php) |
